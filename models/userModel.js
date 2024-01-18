@@ -39,6 +39,10 @@ const userSchema = new mongoose.Schema(
       required: [true, "Password is required."],
       hidden: true,
     },
+    token: {
+      type: String,
+      default: "",
+    },
     otps: [
       {
         type: mongoose.Schema.Types.ObjectId,
