@@ -1,47 +1,19 @@
-const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-const nodemailer = require("nodemailer");
 const Otp = require("../models/otpModel");
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const asyncWrapper = require("../middleware/async");
 const randomstring = require("randomstring");
+const { sendEmail } = require("../middleware/emailMiddleware");
 require("dotenv").config({ path: "../vars/.env" });
 
-const sendOtpToEmail = async (email, otpValue) => {
-  try {
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.SMTP_MAIL,
-        pass: process.env.SMTP_PASSWORD,
-      },
-    });
+const sendOtpToEmail = asyncWrapper(async (email, otpValue) => {
+  const subject = "Verification OTP";
+  const text = `Your OTP is: ${otpValue}`;
+  await sendEmail(email, subject, text);
+});
 
-    const mailOptions = {
-      from: process.env.SMTP_MAIL,
-      to: email,
-      subject: "Verification OTP",
-      text: `Your OTP is: ${otpValue}`,
-    };
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log("Mail has been sent:", info.response);
-      }
-    });
-  } catch (error) {
-    res.status(400).json({
-      success: "false",
-      message: error.message,
-    });
-  }
-};
-
-const signup = async (req, res) => {
+const signup = asyncWrapper(async (req, res) => {
   const { name, phoneNumber, email, birthday, password } = req.body;
   const encPass = await bcrypt.hash(password, 10);
   const otpValue = Math.floor(100000 + Math.random() * 900000);
@@ -74,7 +46,7 @@ const signup = async (req, res) => {
       message: error.message,
     });
   }
-};
+});
 
 const verifyOtp = asyncWrapper(async (req, res) => {
   const { email, otp } = req.body;
@@ -112,7 +84,7 @@ const verifyOtp = asyncWrapper(async (req, res) => {
   });
 });
 
-const login = async (req, res) => {
+const login = asyncWrapper(async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -150,52 +122,25 @@ const login = async (req, res) => {
     { expiresIn: "5 years" }
   );
   res.status(200).json({
-    status: "user logged in successfully.",
+    status: "success",
+    message: "user logged in successfully.",
     accessToken,
   });
-};
+});
 
-const sendResetPasswordMail = async (name, email, token) => {
-  try {
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.SMTP_MAIL,
-        pass: process.env.SMTP_PASSWORD,
-      },
-    });
-
-    const resetUrl = `http://localhost:8000/api/v1/resetpassword?token=${token}`; // Update with your frontend app URL
-    const mailOptions = {
-      from: process.env.SMTP_MAIL,
-      to: email,
-      subject: "Password Reset",
-      text: `Hi ${name} You are receiving this email because you (or someone else) has requested the reset of the password for your account.\n\n
+const sendResetPasswordMail = asyncWrapper(async (name, email, token) => {
+  const subject = "Password Reset";
+  const resetUrl = `http://localhost:8000/api/v1/resetpassword?token=${token}`;
+  const text = `Hi ${name} You are receiving this email because you (or someone else) has requested the reset of the password for your account.\n\n
       Please click on the following link, or paste this into your browser to complete the process:\n\n
       ${resetUrl}\n\n
-      If you did not request this, please ignore this email and your password will remain unchanged.\n`,
-    };
+      If you did not request this, please ignore this email and your password will remain unchanged.\n`;
+  await sendEmail(email, subject, text);
+});
 
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log("Mail has been sent:", info.response);
-      }
-    });
-  } catch (error) {
-    res.status(400).json({
-      success: "false",
-      message: error.message,
-    });
-  }
-};
-
-const forgotPassword = async (req, res) => {
+const forgotPassword = asyncWrapper(async (req, res) => {
+  const email = req.body.email;
   try {
-    const email = req.body.email;
     const userData = await User.findOne({ email: email });
     if (userData) {
       const randomString = randomstring.generate();
@@ -220,13 +165,12 @@ const forgotPassword = async (req, res) => {
       message: error.message,
     });
   }
-};
+});
 
-const resetPassword = async (req, res) => {
+const resetPassword = asyncWrapper(async (req, res) => {
   try {
     const token = req.query.token;
     const tokenData = await User.findOne({ token: token });
-    console.log(tokenData);
     if (tokenData) {
       const password = req.body.password;
       const newPassword = await bcrypt.hash(password, 10);
@@ -252,6 +196,6 @@ const resetPassword = async (req, res) => {
       message: error.message,
     });
   }
-};
+});
 
 module.exports = { signup, verifyOtp, login, forgotPassword, resetPassword };
