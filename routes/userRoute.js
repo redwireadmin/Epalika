@@ -13,6 +13,6 @@ router.post("/signup", signup);
 router.post("/verify", verifyOtp);
 router.post("/login", login);
 router.post("/forgotpassword", forgotPassword);
-router.get("/resetpassword", resetPassword);
+router.patch("/resetpassword", resetPassword);
 
 module.exports = router;

@@ -49,6 +49,10 @@ const userSchema = new mongoose.Schema(
         ref: "Otp",
       },
     ],
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

@@ -18,7 +18,7 @@ const signup = asyncWrapper(async (req, res) => {
   const encPass = await bcrypt.hash(password, 10);
   const otpValue = Math.floor(100000 + Math.random() * 900000);
   const otpExpiration = new Date();
-  otpExpiration.setMinutes(otpExpiration.getMinutes() + 3);
+  otpExpiration.setMinutes(otpExpiration.getMinutes() + 5);
 
   try {
     const createdUser = await User.create({
@@ -37,6 +37,7 @@ const signup = asyncWrapper(async (req, res) => {
     await sendOtpToEmail(email, otpValue);
 
     res.status(200).json({
+      status: "success",
       message: "User registered! OTP sent to email to verify.",
       user: createdUser,
     });
@@ -79,6 +80,10 @@ const verifyOtp = asyncWrapper(async (req, res) => {
   validOtp.used = true;
   await validOtp.save();
 
+  //update user verification status
+  user.isVerified = true;
+  await user.save();
+
   res.status(200).json({
     message: "OTP verified successfully.",
   });
@@ -96,6 +101,17 @@ const login = asyncWrapper(async (req, res) => {
     });
 
     if (!getUser) throw "The email is not registered.";
+
+    const isVerified = getUser.isVerified;
+
+    if (!isVerified) {
+      res.status(400).json({
+        status: "failed",
+        message:
+          "Email not verified.Please check your inbox for verification link.",
+      });
+      return;
+    }
 
     const matched = await bcrypt.compare(password, getUser.password);
 

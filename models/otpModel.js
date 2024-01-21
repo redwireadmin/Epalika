@@ -7,12 +7,11 @@ const otpSchema = new mongoose.Schema({
     required: true,
   },
   otp: {
-    type: Number,
+    type: String,
     required: true,
   },
   expiration: {
     type: Date,
-    default: () => new Date(Date.now() + 60 * 1000),
     required: true,
   },
   used: {
