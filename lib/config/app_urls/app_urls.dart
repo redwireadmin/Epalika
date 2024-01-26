@@ -1,0 +1,11 @@
+class AppUrls {
+  static const String baseUrl = 'http://192.168.1.142:8000';
+  static const String login = '$baseUrl/api/v1/login';
+  static const String signup = '$baseUrl/api/v1/signup';
+  static const String otpVerify = '$baseUrl/api/v1/verify';
+
+  // static const String baseUrl = 'https://reqres.in';
+  // static const String login = '$baseUrl/api/login';
+  // static const String signup = '$baseUrl/api/v1/signup';
+  static const String x = '';
+}
