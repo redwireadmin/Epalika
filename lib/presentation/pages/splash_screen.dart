@@ -1,6 +1,6 @@
 import 'package:e_palika/config/themes/colors.dart';
 import 'package:e_palika/presentation/controllers/user_pref_controller.dart';
-import 'package:e_palika/presentation/pages/home_screen.dart';
+import 'package:e_palika/presentation/pages/landing_screen.dart';
 import 'package:e_palika/presentation/pages/login_screen.dart';
 
 import 'package:flutter/material.dart';
@@ -35,7 +35,7 @@ class _SplashScreenViewState extends State<SplashScreenView> {
   _navigateToHome() async {
     await Future.delayed(Duration(milliseconds: 1500), () {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => HomePageView()));
+          context, MaterialPageRoute(builder: (context) => LandingPageView()));
     });
   }
 

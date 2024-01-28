@@ -3,7 +3,7 @@ import 'package:e_palika/config/themes/colors.dart';
 import 'package:e_palika/presentation/controllers/obscuretext_controller.dart';
 import 'package:e_palika/presentation/widgets/custom_textfield.dart';
 import 'package:e_palika/presentation/widgets/dialogbox_content.dart';
-import 'package:e_palika/presentation/widgets/forgot_pw_general_screen_view.dart';
+import 'package:e_palika/presentation/pages/forgot_password/widgets/forgot_pw_general_screen_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

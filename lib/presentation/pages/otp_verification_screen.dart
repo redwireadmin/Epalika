@@ -1,7 +1,7 @@
 import 'package:e_palika/config/themes/colors.dart';
 import 'package:e_palika/presentation/controllers/otp_verify_controller.dart';
 
-import 'package:e_palika/presentation/widgets/forgot_pw_general_screen_view.dart';
+import 'package:e_palika/presentation/pages/forgot_password/widgets/forgot_pw_general_screen_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

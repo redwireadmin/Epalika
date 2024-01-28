@@ -1,7 +1,7 @@
 import 'package:e_palika/presentation/pages/forgot_password/forgot_pw_screen.dart';
 import 'package:e_palika/presentation/pages/forgot_password/new_password_screen.dart';
 import 'package:e_palika/presentation/pages/otp_verification_screen.dart';
-import 'package:e_palika/presentation/pages/home_screen.dart';
+import 'package:e_palika/presentation/pages/homepage/home_screen.dart';
 import 'package:e_palika/presentation/pages/login_screen.dart';
 import 'package:e_palika/presentation/pages/signup_screen.dart';
 import 'package:e_palika/presentation/pages/splash_screen.dart';
