@@ -5,6 +5,7 @@ import 'package:e_palika/presentation/pages/notice/notice_page.dart';
 import 'package:e_palika/presentation/pages/notification/notification_page.dart';
 import 'package:e_palika/presentation/pages/profile_page/profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LandingPageView extends StatefulWidget {
   const LandingPageView({super.key});
@@ -35,7 +36,8 @@ class _LandingPageViewState extends State<LandingPageView> {
       backgroundColor: CustomColors.primaryColor,
       body: pages[currentIndex],
       bottomNavigationBar: BottomAppBar(
-        // height: Get.height * 0.07,
+        padding: EdgeInsets.symmetric(vertical: 3, horizontal: 25),
+        height: Get.height * 0.07,
         elevation: 8,
         // color: CustomColors.primaryColor1.withOpacity(0.5),
         shape: CircularNotchedRectangle(),
@@ -54,7 +56,10 @@ class _LandingPageViewState extends State<LandingPageView> {
               },
             ),
             IconButton(
-              icon: Icon(Icons.square),
+              icon: GradientIcon(
+                assetName: "notice",
+                isSelected: 1 == currentIndex,
+              ),
               onPressed: () {
                 changePage(1);
               },
@@ -66,13 +71,19 @@ class _LandingPageViewState extends State<LandingPageView> {
               },
             ),
             IconButton(
-              icon: Icon(Icons.notifications),
+              icon: GradientIcon(
+                assetName: "notification-bell",
+                isSelected: 3 == currentIndex,
+              ),
               onPressed: () {
                 changePage(3);
               },
             ),
             IconButton(
-              icon: Icon(Icons.person),
+              icon: GradientIcon(
+                assetName: "profile",
+                isSelected: 4 == currentIndex,
+              ),
               onPressed: () {
                 changePage(4);
               },
