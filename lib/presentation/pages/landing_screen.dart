@@ -1,10 +1,11 @@
 import 'package:e_palika/config/themes/colors.dart';
 import 'package:e_palika/presentation/pages/homepage/home_screen.dart';
-import 'package:e_palika/presentation/pages/homepage/homescreen_widgets/icons.dart';
-import 'package:e_palika/presentation/pages/login_screen.dart';
+// import 'package:e_palika/presentation/pages/homepage/homescreen_widgets/icons.dart';
 import 'package:e_palika/presentation/pages/notice/notice_page.dart';
 import 'package:e_palika/presentation/pages/notification/notification_page.dart';
+import 'package:e_palika/presentation/pages/profile_page/profile_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LandingPageView extends StatefulWidget {
   const LandingPageView({super.key});
@@ -20,75 +21,71 @@ class _LandingPageViewState extends State<LandingPageView> {
     NoticePageView(),
     HomePageView(),
     NotificationPageView(),
-    LoginView()
+    ProfilePageWithoutLogin()
   ];
+  void changePage(index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      extendBody: true,
+      backgroundColor: CustomColors.primaryColor,
       body: pages[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        elevation: 4.0,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        backgroundColor: CustomColors.appWhite,
-        currentIndex: currentIndex,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-        selectedItemColor: CustomColors.primaryColor,
-        items: [
-          BottomNavigationBarItem(
-            icon: GradientIcon(
-              assetName: "home",
-              isSelected: 0 == currentIndex,
+      bottomNavigationBar: BottomAppBar(
+        height: Get.height * 0.07,
+        elevation: 8,
+        // color: CustomColors.primaryColor1.withOpacity(0.5),
+        shape: CircularNotchedRectangle(),
+        notchMargin: 7,
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                changePage(0);
+              },
             ),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: GradientIcon(
-              assetName: "notice",
-              isSelected: 1 == currentIndex,
+            IconButton(
+              icon: Icon(Icons.square),
+              onPressed: () {
+                changePage(1);
+              },
             ),
-            label: "Notice",
-          ),
-          BottomNavigationBarItem(
-            icon: SizedBox.shrink(),
-            label: "Notification",
-          ),
-          BottomNavigationBarItem(
-            icon: GradientIcon(
-              assetName: "notification-bell",
-              isSelected: 3 == currentIndex,
+            IconButton(
+              icon: SizedBox.shrink(),
+              onPressed: () {
+                changePage(2);
+              },
             ),
-            label: "Notification",
-          ),
-          BottomNavigationBarItem(
-            icon: GradientIcon(
-              assetName: "profile",
-              isSelected: 4 == currentIndex,
+            IconButton(
+              icon: Icon(Icons.notifications),
+              onPressed: () {
+                changePage(3);
+              },
             ),
-            label: "Profile",
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: CircleAvatar(
-          radius: 27,
-          backgroundColor: CustomColors.primaryColor1,
-          backgroundImage: AssetImage('assets/images/favicon.png'),
-          child: Image.asset(
-            'assets/images/favicon.png',
-            fit: BoxFit.fitHeight,
-          ),
+            IconButton(
+              icon: Icon(Icons.person),
+              onPressed: () {
+                changePage(4);
+              },
+            ),
+          ],
         ),
-        shape: CircleBorder(),
-        backgroundColor: CustomColors.primaryColor1,
+      ),
+      floatingActionButton: CircleAvatar(
+        radius: 40,
+        backgroundColor: CustomColors.primaryColor1.withOpacity(0.85),
+        // backgroundImage: AssetImage('assets/images/favicon.png'),
+        child: Image.asset(
+          'assets/images/favicon.png',
+          fit: BoxFit.fitHeight,
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     ));

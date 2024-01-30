@@ -217,7 +217,8 @@ class SignupView extends StatelessWidget {
             recognizer: TapGestureRecognizer()
               ..onTap = () {
                 // Get.until((route) => route.isFirst);
-                Get.offAllNamed(Routes.login);
+                Get.back();
+                Get.offNamed(Routes.login);
               },
           ),
         ],

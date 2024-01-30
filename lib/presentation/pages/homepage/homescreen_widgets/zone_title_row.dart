@@ -14,13 +14,17 @@ class ZoneTitleRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Text(
-          '$zoneTitle ZONE',
-          style: TextStyle(
-            fontSize: Get.width * 0.036,
-            fontWeight: FontWeight.w500,
-            color: CustomColors.appWhite,
+        Flexible(
+          flex: 1,
+          child: Text(
+            '$zoneTitle ZONE',
+            style: TextStyle(
+                fontSize: Get.width * 0.036,
+                fontWeight: FontWeight.w500,
+                color: CustomColors.appWhite,
+                overflow: TextOverflow.ellipsis),
           ),
         ),
         SizedBox(width: Get.width * 0.02),

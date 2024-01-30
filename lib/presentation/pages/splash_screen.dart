@@ -23,13 +23,15 @@ class _SplashScreenViewState extends State<SplashScreenView> {
   }
 
   void isLogin() async {
-    userPreference.getUser().then((value) {
-      if (value.accessToken.toString() == 'null') {
-        _navigateToLogin();
-      } else {
-        _navigateToHome();
-      }
-    });
+    userPreference.getUser().then(
+      (value) {
+        if (value.accessToken.toString() == 'null') {
+          _navigateToLogin();
+        } else {
+          _navigateToHome();
+        }
+      },
+    );
   }
 
   _navigateToHome() async {

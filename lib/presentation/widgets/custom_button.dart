@@ -1,5 +1,6 @@
-import 'package:e_palika/config/themes/colors.dart';
 import 'package:flutter/material.dart';
+
+import 'package:e_palika/config/themes/colors.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   final VoidCallback? onPressed;
@@ -10,9 +11,10 @@ class CustomElevatedButton extends StatelessWidget {
   final Widget child;
   final double? radius;
   final BorderSide? side;
+  final double? padding;
 
   const CustomElevatedButton({
-    super.key,
+    Key? key,
     this.onPressed,
     this.backGroundColor = CustomColors.primaryColor,
     this.foreGroundColor = Colors.white,
@@ -21,15 +23,17 @@ class CustomElevatedButton extends StatelessWidget {
     required this.child,
     this.radius = 11,
     this.side,
-  });
+    this.padding,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.all(padding ?? 10),
         side: side,
-        elevation: 8.0,
+        elevation: 4.0,
         backgroundColor: backGroundColor,
         foregroundColor: foreGroundColor,
         minimumSize: Size(width, height),

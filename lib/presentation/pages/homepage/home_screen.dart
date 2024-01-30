@@ -2,8 +2,10 @@
 import 'package:e_palika/config/themes/colors.dart';
 import 'package:e_palika/presentation/controllers/user_pref_controller.dart';
 import 'package:e_palika/presentation/pages/homepage/homescreen_widgets/drawer.dart';
+import 'package:e_palika/presentation/pages/homepage/homescreen_widgets/feature_buttons.dart';
 import 'package:e_palika/presentation/pages/homepage/homescreen_widgets/zone_title_row.dart';
 import 'package:e_palika/presentation/widgets/custom_button.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,7 +30,7 @@ class _HomePageViewState extends State<HomePageView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: CustomColors.appWhite,
+        backgroundColor: CustomColors.primaryColor,
         key: _scaffoldKey,
         appBar: AppBar(
           elevation: 4.0,
@@ -60,10 +62,11 @@ class _HomePageViewState extends State<HomePageView> {
         ),
         body: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               //top image container
               Container(
-                height: Get.height * 0.25,
+                height: Get.height * 0.17,
                 width: Get.width,
                 child: Image.asset(
                   'assets/images/homepage_topImage.jpg',
@@ -88,7 +91,7 @@ class _HomePageViewState extends State<HomePageView> {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
+                    end: Alignment.center,
                     colors: [
                       CustomColors.primaryColor1,
                       CustomColors.primaryColor,
@@ -137,42 +140,38 @@ class _HomePageViewState extends State<HomePageView> {
                       padding: EdgeInsets.only(
                           top: 10, left: 20, right: 20, bottom: 10),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          ZoneTitleRow(zoneTitle: 'CITIZEN'),
-                          buildButtonRow(
-                            ['Button 1', 'Button 2', 'Button 3', 'button4'],
-                            Get.height * 0.15,
-                            Get.height * 0.15,
-                            Get.width * 0.15,
-                            8.0,
-                          ),
+                          SizedBox(height: Get.height * 0.01),
 
-                          // Second row of buttons
-                          buildButtonRow(
-                            ['Button 4', 'Button 5', 'Button 6', 'button4'],
-                            Get.height * 0.15,
-                            Get.height * 0.15,
-                            Get.width * 0.15,
-                            8.0,
-                          ),
-                          SizedBox(height: Get.height * 0.02),
+                          ZoneTitleRow(zoneTitle: 'CITIZEN'),
+                          SizedBox(height: Get.height * 0.005),
+
+                          CitizenZoneButtons(),
+                          SizedBox(height: Get.height * 0.01),
                           ZoneTitleRow(zoneTitle: 'DIGITAL'),
-                          buildButtonRow(
-                            ['Btn1', 'btn2', 'btn3', 'btn4'],
-                            Get.height * 0.11,
-                            Get.height * 0.11,
-                            Get.width * 0.11,
-                            5.0,
-                          ),
-                          SizedBox(height: Get.height * 0.02),
+                          SizedBox(height: Get.height * 0.01),
+                          DigitalZoneButtons(),
+                          SizedBox(height: Get.height * 0.01),
                           ZoneTitleRow(zoneTitle: 'DIRECT'),
-                          buildButtonRow(
-                            ['Button 1', 'Button 2', 'button4'],
-                            Get.height * 0.10,
-                            Get.height * 0.10,
-                            Get.width * 0.4,
-                            8.0,
-                          ),
+                          SizedBox(height: Get.height * 0.01),
+                          DirectZoneButtons(),
+                          // buildButtonRow(
+                          //   ['Button 1', 'Button 2', 'button4'],
+                          //   Get.height * 0.10,
+                          //   Get.height * 0.10,
+                          //   Get.width * 0.4,
+                          //   8.0,
+                          // ),
+                          SizedBox(height: Get.height * 0.01),
+                          ZoneTitleRow(zoneTitle: 'Emergency'),
+                          // buildButtonRow(
+                          //   ['Button 1', 'Button 2', 'button4'],
+                          //   Get.height * 0.10,
+                          //   Get.height * 0.10,
+                          //   Get.width * 0.4,
+                          //   8.0,
+                          // ),
                         ],
                       ),
                     )
@@ -187,29 +186,143 @@ class _HomePageViewState extends State<HomePageView> {
     );
   }
 
-  Widget buildButtonRow(List<String> buttonLabels, double rowHeight,
-      double btnHeight, double btnWidth, double buttonGap) {
-    return Container(
-      height: rowHeight,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: buttonLabels.map((label) {
-          return Padding(
-              padding: EdgeInsets.all(buttonGap),
-              child: CustomElevatedButton(
-                child: Text(label),
-                onPressed: () {},
-                height: btnHeight,
-                width: btnWidth,
-                radius: 20,
-                backGroundColor: CustomColors.appWhite,
-                foreGroundColor: CustomColors.primaryColor1,
-                side: BorderSide(
-                  color: CustomColors.primaryColor1,
-                  width: 3.0,
-                ),
-              ));
-        }).toList(),
+  SingleChildScrollView DirectZoneButtons() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          FeatureButton(
+            child: Text('Education', style: TextStyle(fontSize: 13)),
+            btnHeight: Get.height * 0.08,
+            btnWidth: Get.width * 0.42,
+          ),
+          SizedBox(width: Get.width * 0.04),
+          FeatureButton(
+            child: Text('Education', style: TextStyle(fontSize: 13)),
+            btnHeight: Get.height * 0.08,
+            btnWidth: Get.width * 0.42,
+          ),
+          SizedBox(width: Get.width * 0.025),
+          FeatureButton(
+            child: Text('Eduction', style: TextStyle(fontSize: 13)),
+            btnHeight: Get.height * 0.08,
+            btnWidth: Get.width * 0.42,
+          ),
+        ],
+      ),
+    );
+  }
+
+  SingleChildScrollView DigitalZoneButtons() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          FeatureButton(
+            child: Text('Education', style: TextStyle(fontSize: 13)),
+            btnHeight: Get.height * 0.1,
+            btnWidth: Get.width * 0.20,
+          ),
+          SizedBox(width: Get.width * 0.025),
+          FeatureButton(
+            child: Text('Education', style: TextStyle(fontSize: 13)),
+            btnHeight: Get.height * 0.1,
+            btnWidth: Get.width * 0.20,
+          ),
+          SizedBox(width: Get.width * 0.025),
+          FeatureButton(
+            child: Text('Eduction', style: TextStyle(fontSize: 13)),
+            btnHeight: Get.height * 0.1,
+            btnWidth: Get.width * 0.20,
+          ),
+          SizedBox(width: Get.width * 0.025),
+          FeatureButton(
+            child: Text('Education', style: TextStyle(fontSize: 12)),
+            btnHeight: Get.height * 0.1,
+            btnWidth: Get.width * 0.20,
+          ),
+          SizedBox(width: Get.width * 0.025),
+          FeatureButton(
+            child: Text('Education', style: TextStyle(fontSize: 12)),
+            btnHeight: Get.height * 0.1,
+            btnWidth: Get.width * 0.20,
+          ),
+        ],
+      ),
+    );
+  }
+
+  SingleChildScrollView CitizenZoneButtons() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          //first row inside Ctizen Zone
+          Row(
+            children: [
+              FeatureButton(
+                child: Text('Departments'),
+                btnHeight: Get.height * 0.13,
+                btnWidth: Get.width * 0.27,
+              ),
+              SizedBox(width: Get.width * 0.03),
+              FeatureButton(
+                child: Text('Departments'),
+                btnHeight: Get.height * 0.13,
+                btnWidth: Get.width * 0.27,
+              ),
+              SizedBox(width: Get.width * 0.03),
+              FeatureButton(
+                child: Text('Departments'),
+                btnHeight: Get.height * 0.13,
+                btnWidth: Get.width * 0.27,
+              ),
+              SizedBox(width: Get.width * 0.03),
+              FeatureButton(
+                child: Text('Departments'),
+                btnHeight: Get.height * 0.13,
+                btnWidth: Get.width * 0.27,
+              ),
+              SizedBox(width: Get.width * 0.03),
+              FeatureButton(
+                child: Text('Departments'),
+                btnHeight: Get.height * 0.13,
+                btnWidth: Get.width * 0.27,
+              ),
+            ],
+          ),
+          SizedBox(height: Get.height * 0.01),
+
+          //second row inside Ctizen Zone
+          Row(
+            children: [
+              FeatureButton(
+                child: Text('Departments'),
+                btnHeight: Get.height * 0.13,
+                btnWidth: Get.width * 0.27,
+              ),
+              SizedBox(width: Get.width * 0.03),
+              FeatureButton(
+                child: Text('Departments'),
+                btnHeight: Get.height * 0.13,
+                btnWidth: Get.width * 0.27,
+              ),
+              SizedBox(width: Get.width * 0.03),
+              FeatureButton(
+                child: Text('Departments'),
+                btnHeight: Get.height * 0.13,
+                btnWidth: Get.width * 0.27,
+              ),
+              SizedBox(width: Get.width * 0.03),
+              FeatureButton(
+                child: Text('Departments'),
+                btnHeight: Get.height * 0.13,
+                btnWidth: Get.width * 0.27,
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

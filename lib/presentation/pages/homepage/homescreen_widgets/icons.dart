@@ -15,7 +15,7 @@ class GradientIcon extends StatelessWidget {
     return Image.asset(
       "assets/images/icons/${assetName}.png",
       color: isSelected ? CustomColors.primaryColor1 : null,
-      height: 35,
+      height: 30,
       // width: 40,
     );
   }
