@@ -165,13 +165,22 @@ class _HomePageViewState extends State<HomePageView> {
                           // ),
                           SizedBox(height: Get.height * 0.01),
                           ZoneTitleRow(zoneTitle: 'Emergency'),
-                          // buildButtonRow(
-                          //   ['Button 1', 'Button 2', 'button4'],
-                          //   Get.height * 0.10,
-                          //   Get.height * 0.10,
-                          //   Get.width * 0.4,
-                          //   8.0,
-                          // ),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: buildButtonRow(
+                              [
+                                Text('Emergency1',
+                                    style: TextStyle(fontSize: 13)),
+                                Text('Emergency2',
+                                    style: TextStyle(fontSize: 13)),
+                                Text('Emergency3',
+                                    style: TextStyle(fontSize: 13)),
+                              ],
+                              Get.height * 0.08,
+                              Get.width * 0.42,
+                              Get.width * 0.03,
+                            ),
+                          ),
                         ],
                       ),
                     )
@@ -324,6 +333,26 @@ class _HomePageViewState extends State<HomePageView> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget buildButtonRow(
+      List<Widget> buttonContent, double height, double width, double gap) {
+    return Row(
+      children: buttonContent
+          .map(
+            (child) => Row(
+              children: [
+                FeatureButton(
+                  child: child,
+                  btnHeight: height,
+                  btnWidth: width,
+                ),
+                SizedBox(width: gap),
+              ],
+            ),
+          )
+          .toList(),
     );
   }
 }
