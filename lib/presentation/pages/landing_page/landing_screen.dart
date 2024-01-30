@@ -1,11 +1,10 @@
 import 'package:e_palika/config/themes/colors.dart';
 import 'package:e_palika/presentation/pages/homepage/home_screen.dart';
-// import 'package:e_palika/presentation/pages/homepage/homescreen_widgets/icons.dart';
+import 'package:e_palika/presentation/pages/landing_page/icons.dart';
 import 'package:e_palika/presentation/pages/notice/notice_page.dart';
 import 'package:e_palika/presentation/pages/notification/notification_page.dart';
 import 'package:e_palika/presentation/pages/profile_page/profile_page.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class LandingPageView extends StatefulWidget {
   const LandingPageView({super.key});
@@ -36,7 +35,7 @@ class _LandingPageViewState extends State<LandingPageView> {
       backgroundColor: CustomColors.primaryColor,
       body: pages[currentIndex],
       bottomNavigationBar: BottomAppBar(
-        height: Get.height * 0.07,
+        // height: Get.height * 0.07,
         elevation: 8,
         // color: CustomColors.primaryColor1.withOpacity(0.5),
         shape: CircularNotchedRectangle(),
@@ -46,7 +45,10 @@ class _LandingPageViewState extends State<LandingPageView> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
-              icon: Icon(Icons.home),
+              icon: GradientIcon(
+                assetName: "home",
+                isSelected: 0 == currentIndex,
+              ),
               onPressed: () {
                 changePage(0);
               },
@@ -79,12 +81,11 @@ class _LandingPageViewState extends State<LandingPageView> {
         ),
       ),
       floatingActionButton: CircleAvatar(
-        radius: 40,
+        radius: 30,
         backgroundColor: CustomColors.primaryColor1.withOpacity(0.85),
         // backgroundImage: AssetImage('assets/images/favicon.png'),
         child: Image.asset(
           'assets/images/favicon.png',
-          fit: BoxFit.fitHeight,
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

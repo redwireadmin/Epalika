@@ -5,7 +5,6 @@ import 'package:e_palika/presentation/pages/homepage/homescreen_widgets/drawer.d
 import 'package:e_palika/presentation/pages/homepage/homescreen_widgets/feature_buttons.dart';
 import 'package:e_palika/presentation/pages/homepage/homescreen_widgets/zone_title_row.dart';
 import 'package:e_palika/presentation/widgets/custom_button.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -195,11 +194,12 @@ class _HomePageViewState extends State<HomePageView> {
                   Text('Department', style: TextStyle(fontSize: 13)),
                 ],
               ),
-              Text('Citizen1', style: TextStyle(fontSize: 13)),
-              Text('Citizen1', style: TextStyle(fontSize: 13)),
+              Text('Service', style: TextStyle(fontSize: 13)),
+              Text('Act law', style: TextStyle(fontSize: 13)),
               Text('Citizen1', style: TextStyle(fontSize: 13)),
               Text('Citizen1', style: TextStyle(fontSize: 13)),
             ],
+            ['deparment', 'service', 'actlaw', 'Citizen1', 'Citizen1'],
             Get.height * 0.13,
             Get.width * 0.27,
             Get.width * 0.03,
@@ -214,6 +214,7 @@ class _HomePageViewState extends State<HomePageView> {
               Text('Citizen2', style: TextStyle(fontSize: 13)),
               Text('Citizen2', style: TextStyle(fontSize: 13)),
             ],
+            ['Citizen2', 'Citizen2', 'Citizen2', 'Citizen2', 'Citizen2'],
             Get.height * 0.13,
             Get.width * 0.27,
             Get.width * 0.03,
@@ -239,6 +240,7 @@ class _HomePageViewState extends State<HomePageView> {
           Text('Digital4', style: TextStyle(fontSize: 13)),
           Text('Digital5', style: TextStyle(fontSize: 13)),
         ],
+        ['Digital1', 'Digital2', 'Digital3', 'Digital4', 'Digital5'],
         Get.height * 0.1,
         Get.width * 0.20,
         Get.width * 0.025,
@@ -268,6 +270,7 @@ class _HomePageViewState extends State<HomePageView> {
           Text('Direct2', style: TextStyle(fontSize: 13)),
           Text('Direct3', style: TextStyle(fontSize: 13)),
         ],
+        ['presedentailhotline', 'Direct2', 'Direct3'],
         Get.height * 0.08,
         Get.width * 0.42,
         Get.width * 0.03,
@@ -284,6 +287,7 @@ class _HomePageViewState extends State<HomePageView> {
           Text('Emergency2', style: TextStyle(fontSize: 13)),
           Text('Emergency3', style: TextStyle(fontSize: 13)),
         ],
+        ['Emergency1', 'Emergency2', 'Emergency3'],
         Get.height * 0.08,
         Get.width * 0.42,
         Get.width * 0.03,
@@ -291,15 +295,20 @@ class _HomePageViewState extends State<HomePageView> {
     );
   }
 
-  Widget buildButtonRow(
-      List<Widget> buttonContent, double height, double width, double gap) {
+  Widget buildButtonRow(List<Widget> buttonContent, List<String> onPressRoutes,
+      double height, double width, double gap) {
     return Row(
       children: buttonContent
+          .asMap()
+          .entries
           .map(
             (child) => Row(
               children: [
                 FeatureButton(
-                  child: child,
+                  onPressed: () {
+                    print(onPressRoutes[child.key]);
+                  },
+                  child: child.value,
                   btnHeight: height,
                   btnWidth: width,
                 ),

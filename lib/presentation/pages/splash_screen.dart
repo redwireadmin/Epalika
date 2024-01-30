@@ -1,6 +1,6 @@
 import 'package:e_palika/config/themes/colors.dart';
 import 'package:e_palika/presentation/controllers/user_pref_controller.dart';
-import 'package:e_palika/presentation/pages/landing_screen.dart';
+import 'package:e_palika/presentation/pages/landing_page/landing_screen.dart';
 import 'package:e_palika/presentation/pages/login_screen.dart';
 
 import 'package:flutter/material.dart';

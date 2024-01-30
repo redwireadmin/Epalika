@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 import 'package:e_palika/config/themes/colors.dart';
@@ -10,11 +11,14 @@ class FeatureButton extends StatelessWidget {
   double btnHeight;
   double btnWidth;
   Widget? btnLogo;
+  final VoidCallback? onPressed;
   FeatureButton({
     Key? key,
     required this.child,
     required this.btnHeight,
     required this.btnWidth,
+    this.btnLogo,
+    this.onPressed,
   }) : super(key: key);
 
   @override
@@ -22,7 +26,7 @@ class FeatureButton extends StatelessWidget {
     return CustomElevatedButton(
       padding: 0,
       child: child,
-      onPressed: () {},
+      onPressed: onPressed,
       height: btnHeight,
       width: btnWidth,
       radius: 20,
