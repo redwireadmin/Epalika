@@ -165,22 +165,7 @@ class _HomePageViewState extends State<HomePageView> {
                           // ),
                           SizedBox(height: Get.height * 0.01),
                           ZoneTitleRow(zoneTitle: 'Emergency'),
-                          SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: buildButtonRow(
-                              [
-                                Text('Emergency1',
-                                    style: TextStyle(fontSize: 13)),
-                                Text('Emergency2',
-                                    style: TextStyle(fontSize: 13)),
-                                Text('Emergency3',
-                                    style: TextStyle(fontSize: 13)),
-                              ],
-                              Get.height * 0.08,
-                              Get.width * 0.42,
-                              Get.width * 0.03,
-                            ),
-                          ),
+                          EmergencyZoneButtons(),
                         ],
                       ),
                     )
@@ -191,6 +176,22 @@ class _HomePageViewState extends State<HomePageView> {
           ),
         ),
         endDrawer: EndDrawerWidget(),
+      ),
+    );
+  }
+
+  SingleChildScrollView EmergencyZoneButtons() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: buildButtonRow(
+        [
+          Text('Emergency1', style: TextStyle(fontSize: 13)),
+          Text('Emergency2', style: TextStyle(fontSize: 13)),
+          Text('Emergency3', style: TextStyle(fontSize: 13)),
+        ],
+        Get.height * 0.08,
+        Get.width * 0.42,
+        Get.width * 0.03,
       ),
     );
   }
