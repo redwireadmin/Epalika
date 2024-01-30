@@ -65,28 +65,8 @@ class _HomePageViewState extends State<HomePageView> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               //top image container
-              Container(
-                height: Get.height * 0.17,
-                width: Get.width,
-                child: Image.asset(
-                  'assets/images/homepage_topImage.jpg',
-                  fit: BoxFit.fitWidth,
-                ),
-                decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5), // shadow color
-                      spreadRadius: 5, // spread radius
-                      blurRadius: 7, // blur radius
-                      offset: Offset(0, 3), // changes the shadow position
-                    ),
-                  ],
-                ),
-              ),
-
+              topImageContainer(),
               //Bottom Container
-
               Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -102,39 +82,7 @@ class _HomePageViewState extends State<HomePageView> {
                 child: Column(
                   children: [
                     //news button container
-                    Container(
-                      height: Get.height * 0.05,
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.5), // shadow color
-                            spreadRadius: 5, // spread radius
-                            blurRadius: 7, // blur radius
-                            offset: Offset(0, 3), // changes the shadow position
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        children: [
-                          CustomElevatedButton(
-                            child: Text("News"),
-                            width: 10,
-                            onPressed: () {},
-                            radius: 5,
-                          ),
-                          Flexible(
-                            flex: 1,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    newsRowContent(),
                     //different Zones with buttons
                     Container(
                       padding: EdgeInsets.only(
@@ -143,10 +91,8 @@ class _HomePageViewState extends State<HomePageView> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           SizedBox(height: Get.height * 0.01),
-
                           ZoneTitleRow(zoneTitle: 'CITIZEN'),
-                          SizedBox(height: Get.height * 0.005),
-
+                          SizedBox(height: Get.height * 0.01),
                           CitizenZoneButtons(),
                           SizedBox(height: Get.height * 0.01),
                           ZoneTitleRow(zoneTitle: 'DIGITAL'),
@@ -156,13 +102,6 @@ class _HomePageViewState extends State<HomePageView> {
                           ZoneTitleRow(zoneTitle: 'DIRECT'),
                           SizedBox(height: Get.height * 0.01),
                           DirectZoneButtons(),
-                          // buildButtonRow(
-                          //   ['Button 1', 'Button 2', 'button4'],
-                          //   Get.height * 0.10,
-                          //   Get.height * 0.10,
-                          //   Get.width * 0.4,
-                          //   8.0,
-                          // ),
                           SizedBox(height: Get.height * 0.01),
                           ZoneTitleRow(zoneTitle: 'Emergency'),
                           EmergencyZoneButtons(),
@@ -180,82 +119,58 @@ class _HomePageViewState extends State<HomePageView> {
     );
   }
 
-  SingleChildScrollView EmergencyZoneButtons() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: buildButtonRow(
-        [
-          Text('Emergency1', style: TextStyle(fontSize: 13)),
-          Text('Emergency2', style: TextStyle(fontSize: 13)),
-          Text('Emergency3', style: TextStyle(fontSize: 13)),
-        ],
-        Get.height * 0.08,
-        Get.width * 0.42,
-        Get.width * 0.03,
+  Container topImageContainer() {
+    return Container(
+      height: Get.height * 0.17,
+      width: Get.width,
+      child: Image.asset(
+        'assets/images/homepage_topImage.jpg',
+        fit: BoxFit.fitWidth,
       ),
-    );
-  }
-
-  SingleChildScrollView DirectZoneButtons() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          FeatureButton(
-            child: Text('Education', style: TextStyle(fontSize: 13)),
-            btnHeight: Get.height * 0.08,
-            btnWidth: Get.width * 0.42,
-          ),
-          SizedBox(width: Get.width * 0.04),
-          FeatureButton(
-            child: Text('Education', style: TextStyle(fontSize: 13)),
-            btnHeight: Get.height * 0.08,
-            btnWidth: Get.width * 0.42,
-          ),
-          SizedBox(width: Get.width * 0.025),
-          FeatureButton(
-            child: Text('Eduction', style: TextStyle(fontSize: 13)),
-            btnHeight: Get.height * 0.08,
-            btnWidth: Get.width * 0.42,
+      decoration: BoxDecoration(
+        shape: BoxShape.rectangle,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5), // shadow color
+            spreadRadius: 5, // spread radius
+            blurRadius: 7, // blur radius
+            offset: Offset(0, 3), // changes the shadow position
           ),
         ],
       ),
     );
   }
 
-  SingleChildScrollView DigitalZoneButtons() {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
+  Container newsRowContent() {
+    return Container(
+      height: Get.height * 0.05,
+      decoration: BoxDecoration(
+        color: Colors.transparent,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5), // shadow color
+            spreadRadius: 5, // spread radius
+            blurRadius: 7, // blur radius
+            offset: Offset(0, 3), // changes the shadow position
+          ),
+        ],
+      ),
       child: Row(
         children: [
-          FeatureButton(
-            child: Text('Education', style: TextStyle(fontSize: 13)),
-            btnHeight: Get.height * 0.1,
-            btnWidth: Get.width * 0.20,
+          CustomElevatedButton(
+            child: Text("News"),
+            width: 10,
+            onPressed: () {},
+            radius: 5,
           ),
-          SizedBox(width: Get.width * 0.025),
-          FeatureButton(
-            child: Text('Education', style: TextStyle(fontSize: 13)),
-            btnHeight: Get.height * 0.1,
-            btnWidth: Get.width * 0.20,
-          ),
-          SizedBox(width: Get.width * 0.025),
-          FeatureButton(
-            child: Text('Eduction', style: TextStyle(fontSize: 13)),
-            btnHeight: Get.height * 0.1,
-            btnWidth: Get.width * 0.20,
-          ),
-          SizedBox(width: Get.width * 0.025),
-          FeatureButton(
-            child: Text('Education', style: TextStyle(fontSize: 12)),
-            btnHeight: Get.height * 0.1,
-            btnWidth: Get.width * 0.20,
-          ),
-          SizedBox(width: Get.width * 0.025),
-          FeatureButton(
-            child: Text('Education', style: TextStyle(fontSize: 12)),
-            btnHeight: Get.height * 0.1,
-            btnWidth: Get.width * 0.20,
+          Flexible(
+            flex: 1,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: Colors.grey,
+              ),
+            ),
           ),
         ],
       ),
@@ -269,70 +184,109 @@ class _HomePageViewState extends State<HomePageView> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //first row inside Ctizen Zone
-          Row(
-            children: [
-              FeatureButton(
-                child: Text('Departments'),
-                btnHeight: Get.height * 0.13,
-                btnWidth: Get.width * 0.27,
+          buildButtonRow(
+            [
+              Column(
+                children: [
+                  Icon(
+                    Icons.computer,
+                    size: Get.height * 0.06,
+                  ),
+                  Text('Department', style: TextStyle(fontSize: 13)),
+                ],
               ),
-              SizedBox(width: Get.width * 0.03),
-              FeatureButton(
-                child: Text('Departments'),
-                btnHeight: Get.height * 0.13,
-                btnWidth: Get.width * 0.27,
-              ),
-              SizedBox(width: Get.width * 0.03),
-              FeatureButton(
-                child: Text('Departments'),
-                btnHeight: Get.height * 0.13,
-                btnWidth: Get.width * 0.27,
-              ),
-              SizedBox(width: Get.width * 0.03),
-              FeatureButton(
-                child: Text('Departments'),
-                btnHeight: Get.height * 0.13,
-                btnWidth: Get.width * 0.27,
-              ),
-              SizedBox(width: Get.width * 0.03),
-              FeatureButton(
-                child: Text('Departments'),
-                btnHeight: Get.height * 0.13,
-                btnWidth: Get.width * 0.27,
-              ),
+              Text('Citizen1', style: TextStyle(fontSize: 13)),
+              Text('Citizen1', style: TextStyle(fontSize: 13)),
+              Text('Citizen1', style: TextStyle(fontSize: 13)),
+              Text('Citizen1', style: TextStyle(fontSize: 13)),
             ],
+            Get.height * 0.13,
+            Get.width * 0.27,
+            Get.width * 0.03,
           ),
           SizedBox(height: Get.height * 0.01),
-
           //second row inside Ctizen Zone
+          buildButtonRow(
+            [
+              Text('Citizen2', style: TextStyle(fontSize: 13)),
+              Text('Citizen2', style: TextStyle(fontSize: 13)),
+              Text('Citizen2', style: TextStyle(fontSize: 13)),
+              Text('Citizen2', style: TextStyle(fontSize: 13)),
+              Text('Citizen2', style: TextStyle(fontSize: 13)),
+            ],
+            Get.height * 0.13,
+            Get.width * 0.27,
+            Get.width * 0.03,
+          ),
+        ],
+      ),
+    );
+  }
+
+  SingleChildScrollView DigitalZoneButtons() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: buildButtonRow(
+        [
+          Column(
+            children: [
+              Icon(Icons.book),
+              Text('Digital1', style: TextStyle(fontSize: 13)),
+            ],
+          ),
+          Text('Digital2', style: TextStyle(fontSize: 13)),
+          Text('Digital3', style: TextStyle(fontSize: 13)),
+          Text('Digital4', style: TextStyle(fontSize: 13)),
+          Text('Digital5', style: TextStyle(fontSize: 13)),
+        ],
+        Get.height * 0.1,
+        Get.width * 0.20,
+        Get.width * 0.025,
+      ),
+    );
+  }
+
+  SingleChildScrollView DirectZoneButtons() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: buildButtonRow(
+        [
           Row(
             children: [
-              FeatureButton(
-                child: Text('Departments'),
-                btnHeight: Get.height * 0.13,
-                btnWidth: Get.width * 0.27,
+              Icon(
+                Icons.person,
+                size: Get.width * 0.1,
               ),
-              SizedBox(width: Get.width * 0.03),
-              FeatureButton(
-                child: Text('Departments'),
-                btnHeight: Get.height * 0.13,
-                btnWidth: Get.width * 0.27,
-              ),
-              SizedBox(width: Get.width * 0.03),
-              FeatureButton(
-                child: Text('Departments'),
-                btnHeight: Get.height * 0.13,
-                btnWidth: Get.width * 0.27,
-              ),
-              SizedBox(width: Get.width * 0.03),
-              FeatureButton(
-                child: Text('Departments'),
-                btnHeight: Get.height * 0.13,
-                btnWidth: Get.width * 0.27,
+              SizedBox(width: Get.width * 0.04),
+              Text(
+                'Presidential\nHotline',
+                style: TextStyle(fontSize: 13),
+                textAlign: TextAlign.center,
               ),
             ],
           ),
+          Text('Direct2', style: TextStyle(fontSize: 13)),
+          Text('Direct3', style: TextStyle(fontSize: 13)),
         ],
+        Get.height * 0.08,
+        Get.width * 0.42,
+        Get.width * 0.03,
+      ),
+    );
+  }
+
+  SingleChildScrollView EmergencyZoneButtons() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: buildButtonRow(
+        [
+          Text('Emergency1', style: TextStyle(fontSize: 13)),
+          Text('Emergency2', style: TextStyle(fontSize: 13)),
+          Text('Emergency3', style: TextStyle(fontSize: 13)),
+        ],
+        Get.height * 0.08,
+        Get.width * 0.42,
+        Get.width * 0.03,
       ),
     );
   }
