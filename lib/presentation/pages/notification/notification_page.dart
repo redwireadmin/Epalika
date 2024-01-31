@@ -10,6 +10,7 @@ class NotificationPageView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text("Notifications"),
+          backgroundColor: CustomColors.primaryColor1,
         ),
         body: Container(
           decoration: BoxDecoration(

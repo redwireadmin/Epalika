@@ -15,6 +15,14 @@ class Language extends Translations {
           'alreadyHasAccount': 'Already have an account? ',
           'dontHaveAccount': 'Don\'t have an account? ',
           'forgotPassword': 'Forgot password?',
+          //drawer
+          'home': 'Home',
+          'notification': 'Notification',
+          'setting': 'Setting',
+          'notice': 'Notice',
+          'logout': 'Logout',
+          'nepali': 'Nepali',
+          'english': 'English',
         },
         'np_NP': {
           'login': 'लग - इन',
@@ -28,6 +36,13 @@ class Language extends Translations {
           'alreadyHasAccount': 'पहिले नै खाता छ? ',
           'dontHaveAccount': 'खाता छैन? ',
           'forgotPassword': 'पासवर्ड भुल्नु भयो?',
+          'home': 'गृहपृष्ठ',
+          'notification': 'मेरो सूचना',
+          'setting': 'सेटिङ',
+          'notice': 'सूचना',
+          'logout': 'बाहिर निस्कनु',
+          'nepali': 'नेपाली',
+          'english': 'अंग्रेजी',
         }
       };
 }

@@ -1,6 +1,7 @@
 // import 'package:e_palika/config/routes/routes.dart';
 import 'package:e_palika/config/themes/colors.dart';
 import 'package:e_palika/presentation/controllers/user_pref_controller.dart';
+import 'package:e_palika/presentation/pages/homepage/homescreen_widgets/carousal_slider.dart';
 import 'package:e_palika/presentation/pages/homepage/homescreen_widgets/drawer.dart';
 import 'package:e_palika/presentation/pages/homepage/homescreen_widgets/feature_buttons.dart';
 import 'package:e_palika/presentation/pages/homepage/homescreen_widgets/zone_title_row.dart';
@@ -122,10 +123,7 @@ class _HomePageViewState extends State<HomePageView> {
     return Container(
       height: Get.height * 0.17,
       width: Get.width,
-      child: Image.asset(
-        'assets/images/homepage_topImage.jpg',
-        fit: BoxFit.fitWidth,
-      ),
+      child: CarouselSlider1(),
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         boxShadow: [

@@ -1,6 +1,5 @@
 import 'package:e_palika/config/routes/routes.dart';
 import 'package:e_palika/config/themes/colors.dart';
-import 'package:e_palika/presentation/controllers/language_controller.dart';
 import 'package:e_palika/presentation/controllers/login_controller.dart';
 import 'package:e_palika/presentation/controllers/obscuretext_controller.dart';
 import 'package:e_palika/presentation/pages/signup_screen.dart';
@@ -17,8 +16,6 @@ class LoginView extends StatelessWidget {
   final LoginController loginController = Get.put(LoginController());
   final ObscureTextController obscureTextController =
       Get.put(ObscureTextController());
-
-  final LanguageController languageController = Get.put(LanguageController());
 
   @override
   Widget build(BuildContext context) {
