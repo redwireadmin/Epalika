@@ -4,6 +4,8 @@ const ApiError = require("../utils/ApiError");
 const ApiResponse = require("../utils/ApiResponse");
 const mongoose = require("mongoose");
 
+//this is for commit message
+
 const registerNotice = asyncHandler(async (req, res) => {
   const { title, noticebody } = req.body;
   if ([title, noticebody].some((field) => field?.trim() === "")) {
