@@ -14,7 +14,7 @@ const sendOtpToEmail = asyncWrapper(async (email, otpValue) => {
 });
 
 const signup = asyncWrapper(async (req, res) => {
-  const { name, phoneNumber, email, birthday, password } = req.body;
+  const { name, phoneNumber, email, birthday, password, role } = req.body;
   const encPass = await bcrypt.hash(password, 10);
   const otpValue = Math.floor(100000 + Math.random() * 900000);
   const otpExpiration = new Date();
@@ -27,7 +27,12 @@ const signup = asyncWrapper(async (req, res) => {
       email,
       birthday,
       password: encPass,
+      role,
     });
+
+    const userCreated = await User.findById(createdUser._id).select(
+      "-password -token -role -otps"
+    );
 
     const createdOtp = await Otp.create({
       user: createdUser._id,
@@ -39,7 +44,7 @@ const signup = asyncWrapper(async (req, res) => {
     res.status(200).json({
       status: "success",
       message: "User registered! OTP sent to email to verify.",
-      user: createdUser,
+      user: userCreated,
     });
   } catch (error) {
     res.status(400).json({
@@ -85,12 +90,16 @@ const verifyOtp = asyncWrapper(async (req, res) => {
   await user.save();
 
   res.status(200).json({
+    status: "success",
     message: "OTP verified successfully.",
   });
 });
 
 const login = asyncWrapper(async (req, res) => {
   const { email, password } = req.body;
+  const otpValue = Math.floor(100000 + Math.random() * 900000);
+  const otpExpiration = new Date();
+  otpExpiration.setMinutes(otpExpiration.getMinutes() + 5);
 
   try {
     if (!email) throw "Please provide email.";
@@ -105,10 +114,16 @@ const login = asyncWrapper(async (req, res) => {
     const isVerified = getUser.isVerified;
 
     if (!isVerified) {
+      const createdOtp = await Otp.create({
+        user: getUser._id,
+        otp: otpValue,
+        expiration: otpExpiration,
+      });
+      await sendOtpToEmail(email, otpValue);
+
       res.status(400).json({
         status: "failed",
-        message:
-          "Email not verified.Please check your inbox for verification link.",
+        message: "Email not verified",
       });
       return;
     }
