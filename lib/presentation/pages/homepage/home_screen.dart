@@ -4,6 +4,7 @@ import 'package:e_palika/presentation/controllers/user_pref_controller.dart';
 import 'package:e_palika/presentation/pages/homepage/homescreen_widgets/carousal_slider.dart';
 import 'package:e_palika/presentation/pages/homepage/homescreen_widgets/drawer.dart';
 import 'package:e_palika/presentation/pages/homepage/homescreen_widgets/feature_buttons.dart';
+import 'package:e_palika/presentation/pages/homepage/homescreen_widgets/news_marquee.dart';
 import 'package:e_palika/presentation/pages/homepage/homescreen_widgets/zone_title_row.dart';
 import 'package:e_palika/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -167,6 +168,7 @@ class _HomePageViewState extends State<HomePageView> {
                 borderRadius: BorderRadius.circular(5),
                 color: Colors.grey,
               ),
+              child: NewsMarquee(),
             ),
           ),
         ],

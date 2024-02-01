@@ -1,7 +1,5 @@
 import 'package:e_palika/config/routes/routes.dart';
 import 'package:e_palika/config/themes/colors.dart';
-import 'package:e_palika/presentation/pages/homepage/homescreen_widgets/carousal_slider.dart';
-// import 'package:e_palika/presentation/widgets/custom_button.dart';
 import 'package:e_palika/presentation/widgets/dialogbox_content.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -44,7 +42,7 @@ class ProfilePageWithoutLogin extends StatelessWidget {
               // Add more colors if needed
             ),
           ),
-          child: CarouselSlider1(),
+          child: SizedBox.shrink(),
         ),
       ),
     );
