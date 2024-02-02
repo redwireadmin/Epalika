@@ -1,7 +1,7 @@
 import 'package:e_palika/config/getx_localization/languages.dart';
 import 'package:e_palika/config/routes/routes.dart';
 import 'package:e_palika/config/themes/colors.dart';
-import 'package:e_palika/presentation/controllers/language_controller.dart';
+import 'package:e_palika/features/homepage/presentation/controllers/language_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: CustomColors.pallete1,
         appBarTheme: AppBarTheme(
+            backgroundColor: CustomColors.primaryColor1,
             elevation: 4.0,
             iconTheme: IconThemeData(color: Colors.white),
             titleTextStyle: TextStyle(color: Colors.white, fontSize: 20)),

@@ -1,13 +1,16 @@
-import 'package:e_palika/presentation/pages/forgot_password/forgot_pw_screen.dart';
-import 'package:e_palika/presentation/pages/forgot_password/new_password_screen.dart';
-import 'package:e_palika/presentation/pages/otp_verification_screen.dart';
-import 'package:e_palika/presentation/pages/homepage/home_screen.dart';
-import 'package:e_palika/presentation/pages/login_screen.dart';
-import 'package:e_palika/presentation/pages/signup_screen.dart';
-import 'package:e_palika/presentation/pages/splash_screen.dart';
+import 'package:e_palika/features/auth/presentation/pages/forgot_password/forgot_pw_screen.dart';
+import 'package:e_palika/features/auth/presentation/pages/forgot_password/new_password_screen.dart';
+import 'package:e_palika/features/auth/presentation/pages/otp_verification_screen.dart';
+import 'package:e_palika/features/homepage/presentation/pages/department_page/department_screen.dart';
+import 'package:e_palika/features/homepage/presentation/pages/home_page/home_screen.dart';
+import 'package:e_palika/features/auth/presentation/pages/login_screen.dart';
+import 'package:e_palika/features/auth/presentation/pages/signup_screen.dart';
+import 'package:e_palika/features/auth/presentation/pages/splash_screen.dart';
+import 'package:e_palika/features/homepage/presentation/pages/service_page/service_screen.dart';
 import 'package:get/get.dart';
 
 class Routes {
+  //auth routes
   static String splash = '/';
   static String home = '/home';
   static String login = '/login';
@@ -15,6 +18,11 @@ class Routes {
   static String forgotpassword = '/forgotpw';
   static String verifyotp = '/verifyotp';
   static String newpassword = '/newpassword';
+
+  //homepage routes
+  static String departments = '/departments';
+  static String services = '/services';
+  static String actlaw = '/actlaw';
 }
 
 final getPages = [
@@ -45,5 +53,13 @@ final getPages = [
   GetPage(
     name: Routes.newpassword,
     page: () => CreateNewPasswordView(),
+  ),
+  GetPage(
+    name: Routes.departments,
+    page: () => DepartmentPage(),
+  ),
+  GetPage(
+    name: Routes.services,
+    page: () => ServicePage(),
   ),
 ];
