@@ -14,7 +14,7 @@ const router = express.Router();
 router.route("/register").post(auth, isAdmin, registerNotice);
 router.route("/update/:id").patch(auth, isAdmin, updateNotice);
 router.route("/allnotice").get(getAllNotice);
-router.route("/single-notice/:id").get(auth, isAdmin, getNotice);
+router.route("/single-notice/:id").get(getNotice);
 router.route("/delete/:id").delete(auth, isAdmin, deleteNotice);
 
 module.exports = router;
