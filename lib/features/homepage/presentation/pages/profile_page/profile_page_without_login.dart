@@ -42,6 +42,29 @@ class ProfilePageWithoutLogin extends StatelessWidget {
               // Add more colors if needed
             ),
           ),
+          child: Center(
+            child: Container(
+              height: 50,
+              width: 150,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.purple,
+                      spreadRadius: 1,
+                      blurRadius: 1,
+                      offset: Offset(4, 4),
+                    ),
+                    BoxShadow(
+                      color: Colors.white,
+                      spreadRadius: 1,
+                      blurRadius: 1,
+                      offset: Offset(-4, -4),
+                    ),
+                  ]),
+            ),
+          ),
         ),
       ),
     );

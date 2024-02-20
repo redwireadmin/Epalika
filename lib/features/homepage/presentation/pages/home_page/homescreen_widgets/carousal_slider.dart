@@ -8,9 +8,14 @@ class CarouselSlider1 extends StatelessWidget {
   CarouselSlider1({super.key});
   final HomeController homeController = Get.put(HomeController());
   final List<String> images = [
-    'homepage_topImage.jpg',
-    'homepage_topImage.jpg',
-    'homepage_topImage.jpg',
+    'homepage_topImage1.jpg',
+    'homepage_topImage2.jpeg',
+    'homepage_topImage3.jpg',
+    'homepage_topImage4.jpg',
+    'homepage_topImage5.jpg',
+    'homepage_topImage6.jpg',
+    'homepage_topImage7.jpg',
+    'homepage_topImage8.jpg',
     // Add more image URLs as needed
   ];
 
@@ -20,7 +25,7 @@ class CarouselSlider1 extends StatelessWidget {
       children: [
         CarouselSlider(
           options: CarouselOptions(
-            height: Get.height * 0.17,
+            height: Get.height * 0.2,
             autoPlay: true,
             // aspectRatio: 16 / 9,
             autoPlayCurve: Curves.fastOutSlowIn,
@@ -37,7 +42,7 @@ class CarouselSlider1 extends StatelessWidget {
                   width: Get.width,
                   child: Image.asset(
                     'assets/images/${image}',
-                    fit: BoxFit.fitWidth,
+                    fit: BoxFit.fitHeight,
                   ),
                 );
               },
@@ -52,7 +57,7 @@ class CarouselSlider1 extends StatelessWidget {
                 () => Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < 8; i++)
                       Icon(
                         Icons.circle,
                         color: homeController.currentIndexSlider == i

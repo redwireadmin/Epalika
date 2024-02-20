@@ -14,39 +14,48 @@ class ZoneTitleRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        Text(
+          '$zoneTitle ZONE',
+          style: TextStyle(
+              fontSize: Get.width * 0.036,
+              fontWeight: FontWeight.w500,
+              color: CustomColors.appWhite,
+              overflow: TextOverflow.ellipsis),
+        ),
+        SizedBox(width: Get.width * 0.02),
         Flexible(
           flex: 1,
-          child: Text(
-            '$zoneTitle ZONE',
-            style: TextStyle(
-                fontSize: Get.width * 0.036,
-                fontWeight: FontWeight.w500,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
                 color: CustomColors.appWhite,
-                overflow: TextOverflow.ellipsis),
-          ),
-        ),
-        SizedBox(width: Get.width * 0.02),
-        Container(
-          color: CustomColors.appWhite,
-          height: Get.height * 0.002,
-          width: Get.width * 0.5,
-        ),
-        SizedBox(width: Get.width * 0.02),
-        CircleAvatar(
-          radius: 10,
-          child: Icon(
-            Icons.arrow_back_ios,
-            size: 12,
-          ),
-        ),
-        SizedBox(width: Get.width * 0.01),
-        CircleAvatar(
-          radius: 10,
-          child: Icon(
-            Icons.arrow_forward_ios,
-            size: 12,
+                height: Get.height * 0.002,
+                width: Get.width * 0.4,
+              ),
+              SizedBox(width: Get.width * 0.02),
+              Row(
+                children: [
+                  CircleAvatar(
+                    radius: 10,
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      size: 12,
+                    ),
+                  ),
+                  SizedBox(width: Get.width * 0.01),
+                  CircleAvatar(
+                    radius: 10,
+                    child: Icon(
+                      Icons.arrow_forward_ios,
+                      size: 12,
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ],

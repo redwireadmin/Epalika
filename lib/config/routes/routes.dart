@@ -1,6 +1,7 @@
 import 'package:e_palika/features/auth/presentation/pages/forgot_password/forgot_pw_screen.dart';
 import 'package:e_palika/features/auth/presentation/pages/forgot_password/new_password_screen.dart';
 import 'package:e_palika/features/auth/presentation/pages/otp_verification_screen.dart';
+import 'package:e_palika/features/homepage/presentation/pages/actlaw_page/actlaw_screen.dart';
 import 'package:e_palika/features/homepage/presentation/pages/department_page/department_screen.dart';
 import 'package:e_palika/features/homepage/presentation/pages/home_page/home_screen.dart';
 import 'package:e_palika/features/auth/presentation/pages/login_screen.dart';
@@ -61,5 +62,9 @@ final getPages = [
   GetPage(
     name: Routes.services,
     page: () => ServicePage(),
+  ),
+  GetPage(
+    name: Routes.actlaw,
+    page: () => ActLawPage(),
   ),
 ];

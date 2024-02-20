@@ -20,6 +20,11 @@ class _SplashScreenViewState extends State<SplashScreenView> {
     super.initState();
     // isLogin();
     _navigateToHome();
+    print('wid');
+    print(Get.width);
+    print('height');
+
+    print(Get.height);
   }
 
   void isLogin() async {
@@ -57,10 +62,10 @@ class _SplashScreenViewState extends State<SplashScreenView> {
         width: Get.width,
         height: Get.height,
         decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.transparent,
-            width: Get.width * 0.01,
-          ),
+          // border: Border.all(
+          //   color: Colors.transparent,
+          //   width: Get.width * 0.01,
+          // ),
           gradient: const LinearGradient(
             begin: Alignment(0.5, 0),
             end: Alignment(0.5, 1),
@@ -70,25 +75,22 @@ class _SplashScreenViewState extends State<SplashScreenView> {
             ],
           ),
         ),
-        child: SizedBox(
-          width: double.maxFinite,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Spacer(
-                flex: 66,
-              ),
-              Image.asset(
-                'assets/images/logo1.png',
-                height: Get.height * 0.3,
-                // width: Get.width * 0.5,
-              ),
-              Spacer(
-                flex: 33,
-              ),
-              _buildEmpowerConnectSection(),
-            ],
-          ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Spacer(
+              flex: (Get.height * 0.05).round(),
+            ),
+            Image.asset(
+              'assets/images/logo1.png',
+              height: Get.height * 0.27,
+              // width: Get.width * 0.5,
+            ),
+            Spacer(
+              flex: (Get.height * 0.06).round(),
+            ),
+            _buildEmpowerConnectSection(),
+          ],
         ),
       ),
     );
@@ -107,19 +109,20 @@ class _SplashScreenViewState extends State<SplashScreenView> {
           image: AssetImage(
             'assets/images/img_group_1.png',
           ),
-          fit: BoxFit.fitHeight,
+          fit: BoxFit.fitWidth,
         ),
       ),
       child: Column(
         children: [
-          SizedBox(height: Get.height * 0.16),
-          const Text(
+          SizedBox(height: Get.height * 0.2),
+          Text(
             "Empower, Connect, Thrive",
             style: TextStyle(
               color: Colors.white,
-              fontSize: 14,
+              fontSize: 11,
               // fontFamily: 'Inter',
               fontWeight: FontWeight.w400,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],

@@ -23,18 +23,31 @@ class FeatureButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomElevatedButton(
-      padding: 0,
-      child: child,
-      onPressed: onPressed,
-      height: btnHeight,
-      width: btnWidth,
-      radius: 20,
-      backGroundColor: CustomColors.appWhite,
-      foreGroundColor: CustomColors.primaryColor1,
-      side: BorderSide(
-        color: CustomColors.primaryColor1,
-        width: 3.0,
+    return Container(
+      decoration: BoxDecoration(
+          color: CustomColors.primaryColor,
+          borderRadius: BorderRadius.circular(25),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.7),
+              spreadRadius: 0.5,
+              blurRadius: 2,
+              offset: Offset(4, 4),
+            ),
+          ]),
+      child: CustomElevatedButton(
+        padding: 0,
+        child: child,
+        onPressed: onPressed,
+        height: btnHeight,
+        width: btnWidth,
+        radius: 20,
+        backGroundColor: CustomColors.appWhite,
+        foreGroundColor: CustomColors.primaryColor1,
+        side: BorderSide(
+          color: Colors.transparent,
+          width: 0.0,
+        ),
       ),
     );
   }

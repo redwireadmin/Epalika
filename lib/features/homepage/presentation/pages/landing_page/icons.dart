@@ -14,7 +14,8 @@ class GradientIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.asset(
       "assets/images/icons/${assetName}.png",
-      color: isSelected ? CustomColors.primaryColor1 : null,
+      color:
+          isSelected ? CustomColors.primaryColor1 : CustomColors.primaryColor,
     );
   }
 }

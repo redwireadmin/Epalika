@@ -15,7 +15,7 @@ class EndDrawerWidget extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           Container(
-            height: 200,
+            height: Get.height * 0.25,
             child: DrawerHeader(
               decoration: BoxDecoration(
                 color: CustomColors.primaryColor1,
@@ -26,12 +26,12 @@ class EndDrawerWidget extends StatelessWidget {
                   children: [
                     Image.asset(
                       'assets/images/favicon.png',
-                      height: 100,
+                      height: Get.height * 0.15,
                     ),
                     SizedBox(height: 10),
                     Image.asset(
                       'assets/images/rainadevi.png',
-                      height: 35,
+                      height: Get.height * 0.04,
                     ),
                   ],
                 ),
@@ -125,7 +125,7 @@ class EndDrawerWidget extends StatelessWidget {
           //     Text('Nepali'),
           //   ],
           // ),
-          SizedBox(height: 120),
+          SizedBox(height: Get.height * 0.185),
           Container(
             height: 80,
             color: CustomColors.primaryColor,

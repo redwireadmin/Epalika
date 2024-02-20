@@ -104,18 +104,6 @@ class LoginView extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(80),
         child: Container(
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            // color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: CustomColors.primaryColor.withOpacity(0.25),
-                spreadRadius: 3,
-                blurRadius: 30,
-                offset: Offset(0, 5),
-              ),
-            ],
-          ),
           child: Image.asset(
             'assets/images/logo1.png',
             fit: BoxFit.fitHeight,

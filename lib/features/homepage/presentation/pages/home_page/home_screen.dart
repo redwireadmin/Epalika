@@ -1,8 +1,8 @@
 import 'package:e_palika/config/themes/colors.dart';
 import 'package:e_palika/features/auth/presentation/controllers/user_pref_controller.dart';
+import 'package:e_palika/features/homepage/presentation/pages/home_page/homescreen_widgets/build_button_row.dart';
 import 'package:e_palika/features/homepage/presentation/pages/home_page/homescreen_widgets/carousal_slider.dart';
 import 'package:e_palika/features/homepage/presentation/pages/home_page/homescreen_widgets/drawer.dart';
-import 'package:e_palika/features/homepage/presentation/pages/home_page/homescreen_widgets/feature_buttons.dart';
 import 'package:e_palika/features/homepage/presentation/pages/home_page/homescreen_widgets/news_marquee.dart';
 import 'package:e_palika/features/homepage/presentation/pages/home_page/homescreen_widgets/zone_title_row.dart';
 import 'package:e_palika/core/utils/widgets/custom_button.dart';
@@ -32,6 +32,7 @@ class _HomePageViewState extends State<HomePageView> {
         backgroundColor: CustomColors.primaryColor,
         key: _scaffoldKey,
         appBar: AppBar(
+          toolbarHeight: Get.height * 0.067,
           elevation: 4.0,
           backgroundColor: CustomColors.primaryColor1,
           leading: Padding(
@@ -84,25 +85,24 @@ class _HomePageViewState extends State<HomePageView> {
                     newsRowContent(),
                     //different Zones with buttons
                     Container(
-                      padding: EdgeInsets.only(
-                          top: 10, left: 20, right: 20, bottom: 10),
+                      padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           SizedBox(height: Get.height * 0.01),
                           ZoneTitleRow(zoneTitle: 'CITIZEN'),
-                          SizedBox(height: Get.height * 0.01),
+                          SizedBox(height: Get.height * 0.005),
                           CitizenZoneButtons(),
-                          SizedBox(height: Get.height * 0.01),
                           ZoneTitleRow(zoneTitle: 'DIGITAL'),
-                          SizedBox(height: Get.height * 0.01),
+                          SizedBox(height: Get.height * 0.005),
                           DigitalZoneButtons(),
-                          SizedBox(height: Get.height * 0.01),
                           ZoneTitleRow(zoneTitle: 'DIRECT'),
-                          SizedBox(height: Get.height * 0.01),
+                          SizedBox(height: Get.height * 0.005),
                           DirectZoneButtons(),
-                          SizedBox(height: Get.height * 0.01),
+                          SizedBox(height: Get.height * 0.02),
                           ZoneTitleRow(zoneTitle: 'Emergency'),
+                          SizedBox(height: Get.height * 0.005),
                           EmergencyZoneButtons(),
                         ],
                       ),
@@ -120,7 +120,7 @@ class _HomePageViewState extends State<HomePageView> {
 
   Container topImageContainer() {
     return Container(
-      height: Get.height * 0.17,
+      height: Get.height * 0.2,
       width: Get.width,
       child: CarouselSlider1(),
       decoration: BoxDecoration(
@@ -139,7 +139,7 @@ class _HomePageViewState extends State<HomePageView> {
 
   Container newsRowContent() {
     return Container(
-      height: Get.height * 0.05,
+      height: Get.height * 0.04,
       decoration: BoxDecoration(
         color: Colors.transparent,
         boxShadow: [
@@ -154,8 +154,11 @@ class _HomePageViewState extends State<HomePageView> {
       child: Row(
         children: [
           CustomElevatedButton(
-            child: Text("News"),
-            width: 10,
+            child: Text(
+              "News",
+              style: TextStyle(fontSize: 10),
+            ),
+            width: 70,
             onPressed: () {},
             radius: 5,
           ),
@@ -182,41 +185,92 @@ class _HomePageViewState extends State<HomePageView> {
         children: [
           //first row inside Ctizen Zone
           buildButtonRow(
-            [
-              Column(
-                children: [
-                  Icon(
-                    Icons.computer,
-                    size: Get.height * 0.06,
-                  ),
-                  Text('Department', style: TextStyle(fontSize: 13)),
-                ],
-              ),
-              Text('Service', style: TextStyle(fontSize: 13)),
-              Text('Act law', style: TextStyle(fontSize: 13)),
-              Text('Citizen1', style: TextStyle(fontSize: 13)),
-              Text('Citizen1', style: TextStyle(fontSize: 13)),
-            ],
-            ['/departments', '/services', '/actlaw', 'Citizen1', 'Citizen1'],
-            Get.height * 0.13,
-            Get.width * 0.27,
-            Get.width * 0.03,
-          ),
+              buttonContent: [
+                Column(
+                  children: [
+                    Icon(
+                      Icons.computer,
+                      size: Get.height * 0.04,
+                    ),
+                    Text('Departments', style: TextStyle(fontSize: 13)),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Icon(
+                      Icons.assistant,
+                      size: Get.height * 0.04,
+                    ),
+                    Text('Services', style: TextStyle(fontSize: 13)),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Icon(
+                      Icons.rule_sharp,
+                      size: Get.height * 0.04,
+                    ),
+                    Text('Act laws', style: TextStyle(fontSize: 13)),
+                  ],
+                ),
+                Text('Citizen1', style: TextStyle(fontSize: 13)),
+                Text('Citizen1', style: TextStyle(fontSize: 13)),
+              ],
+              onPressRoutes: [
+                '/departments',
+                '/services',
+                '/actlaw',
+                'Citizen1',
+                'Citizen1'
+              ],
+              height: Get.height * 0.13,
+              width: Get.width * 0.27,
+              gap: Get.width * 0.03),
           SizedBox(height: Get.height * 0.01),
           //second row inside Ctizen Zone
           buildButtonRow(
-            [
-              Text('Citizen2', style: TextStyle(fontSize: 13)),
-              Text('Citizen2', style: TextStyle(fontSize: 13)),
-              Text('Citizen2', style: TextStyle(fontSize: 13)),
-              Text('Citizen2', style: TextStyle(fontSize: 13)),
-              Text('Citizen2', style: TextStyle(fontSize: 13)),
-            ],
-            ['Citizen2', 'Citizen2', 'Citizen2', 'Citizen2', 'Citizen2'],
-            Get.height * 0.13,
-            Get.width * 0.27,
-            Get.width * 0.03,
-          ),
+              buttonContent: [
+                Column(
+                  children: [
+                    Icon(
+                      Icons.add_chart_rounded,
+                      size: Get.height * 0.04,
+                    ),
+                    Text('Citizen\nCharter', style: TextStyle(fontSize: 13)),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Icon(
+                      Icons.bookmark_add_rounded,
+                      size: Get.height * 0.04,
+                    ),
+                    Text('Notice\nBoard', style: TextStyle(fontSize: 13)),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Icon(
+                      Icons.home_filled,
+                      size: Get.height * 0.04,
+                    ),
+                    Text('Ward', style: TextStyle(fontSize: 13)),
+                  ],
+                ),
+                Text('Citizen2', style: TextStyle(fontSize: 13)),
+                Text('Citizen2', style: TextStyle(fontSize: 13)),
+              ],
+              onPressRoutes: [
+                'Citizen2',
+                'Citizen2',
+                'Citizen2',
+                'Citizen2',
+                'Citizen2'
+              ],
+              height: Get.height * 0.13,
+              width: Get.width * 0.27,
+              gap: Get.width * 0.03),
+          SizedBox(height: Get.height * 0.01),
         ],
       ),
     );
@@ -225,23 +279,74 @@ class _HomePageViewState extends State<HomePageView> {
   SingleChildScrollView DigitalZoneButtons() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: buildButtonRow(
-        [
-          Column(
-            children: [
-              Icon(Icons.book),
-              Text('Digital1', style: TextStyle(fontSize: 13)),
+      child: Column(
+        children: [
+          buildButtonRow(
+            buttonContent: [
+              Column(
+                children: [
+                  Icon(Icons.book),
+                  Text(
+                    'Digital\nApproval',
+                    style: TextStyle(fontSize: 12),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Icon(Icons.grade),
+                  Text(
+                    'Digital\nEducation',
+                    style: TextStyle(fontSize: 12),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Icon(Icons.person),
+                  Text(
+                    'Digital\nProfile',
+                    style: TextStyle(fontSize: 12),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Icon(Icons.travel_explore),
+                  Text(
+                    'Digital\nTourism',
+                    style: TextStyle(fontSize: 12),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Icon(Icons.book),
+                  Text(
+                    'Digital\nEducation',
+                    style: TextStyle(fontSize: 12),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ],
+            onPressRoutes: [
+              'Digital1',
+              'Digital2',
+              'Digital3',
+              'Digital4',
+              'Digital5'
+            ],
+            height: Get.height * 0.1,
+            width: Get.width * 0.20,
+            gap: Get.width * 0.025,
           ),
-          Text('Digital2', style: TextStyle(fontSize: 13)),
-          Text('Digital3', style: TextStyle(fontSize: 13)),
-          Text('Digital4', style: TextStyle(fontSize: 13)),
-          Text('Digital5', style: TextStyle(fontSize: 13)),
+          SizedBox(height: Get.height * 0.01),
         ],
-        ['Digital1', 'Digital2', 'Digital3', 'Digital4', 'Digital5'],
-        Get.height * 0.1,
-        Get.width * 0.20,
-        Get.width * 0.025,
       ),
     );
   }
@@ -249,29 +354,51 @@ class _HomePageViewState extends State<HomePageView> {
   SingleChildScrollView DirectZoneButtons() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: buildButtonRow(
-        [
-          Row(
-            children: [
-              Icon(
-                Icons.person,
-                size: Get.width * 0.1,
-              ),
-              SizedBox(width: Get.width * 0.04),
-              Text(
-                'Presidential\nHotline',
-                style: TextStyle(fontSize: 13),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-          Text('Direct2', style: TextStyle(fontSize: 13)),
-          Text('Direct3', style: TextStyle(fontSize: 13)),
+      child: Column(
+        children: [
+          buildButtonRow(
+              buttonContent: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.person,
+                      size: Get.width * 0.1,
+                    ),
+                    SizedBox(width: Get.width * 0.04),
+                    Text(
+                      'Presidential\nHotline',
+                      style: TextStyle(fontSize: 13),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.post_add,
+                      size: Get.width * 0.1,
+                    ),
+                    SizedBox(width: Get.width * 0.04),
+                    Text(
+                      'Complaint\nBox',
+                      style: TextStyle(fontSize: 13),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+                Text('Direct2', style: TextStyle(fontSize: 13)),
+                Text('Direct3', style: TextStyle(fontSize: 13)),
+              ],
+              onPressRoutes: [
+                'presedentailhotline',
+                'Direct2',
+                'Direct3'
+              ],
+              height: Get.height * 0.08,
+              width: Get.width * 0.42,
+              gap: Get.width * 0.03),
+          SizedBox(height: Get.height * 0.01),
         ],
-        ['presedentailhotline', 'Direct2', 'Direct3'],
-        Get.height * 0.08,
-        Get.width * 0.42,
-        Get.width * 0.03,
       ),
     );
   }
@@ -279,44 +406,49 @@ class _HomePageViewState extends State<HomePageView> {
   SingleChildScrollView EmergencyZoneButtons() {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
-      child: buildButtonRow(
-        [
-          Text('Emergency1', style: TextStyle(fontSize: 13)),
-          Text('Emergency2', style: TextStyle(fontSize: 13)),
-          Text('Emergency3', style: TextStyle(fontSize: 13)),
+      child: Column(
+        children: [
+          buildButtonRow(
+            buttonContent: [
+              Column(
+                children: [
+                  Icon(Icons.person),
+                  Text(
+                    'Police',
+                    style: TextStyle(fontSize: 12),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Icon(Icons.car_crash),
+                  Text(
+                    'Ambulance',
+                    style: TextStyle(fontSize: 12),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Icon(Icons.fire_truck),
+                  Text(
+                    'Fire Fighter',
+                    style: TextStyle(fontSize: 12),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ],
+            onPressRoutes: ['Emergency1', 'Emergency2', 'Emergency3'],
+            height: Get.height * 0.1,
+            width: Get.width * 0.20,
+            gap: Get.width * 0.025,
+          ),
+          SizedBox(height: Get.height * 0.01),
         ],
-        ['Emergency1', 'Emergency2', 'Emergency3'],
-        Get.height * 0.08,
-        Get.width * 0.42,
-        Get.width * 0.03,
       ),
-    );
-  }
-
-  Widget buildButtonRow(List<Widget> buttonContent, List<String> onPressRoutes,
-      double height, double width, double gap) {
-    return Row(
-      children: buttonContent
-          .asMap()
-          .entries
-          .map(
-            (child) => Row(
-              children: [
-                FeatureButton(
-                  onPressed: () {
-                    // Get.to(() => DepartmentPage());
-                    Get.toNamed(onPressRoutes[child.key]);
-                    print(onPressRoutes[child.key]);
-                  },
-                  child: child.value,
-                  btnHeight: height,
-                  btnWidth: width,
-                ),
-                SizedBox(width: gap),
-              ],
-            ),
-          )
-          .toList(),
     );
   }
 }
