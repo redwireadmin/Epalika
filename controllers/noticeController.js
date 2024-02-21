@@ -2,6 +2,7 @@ const Notice = require("../models/notice.model");
 const asyncHandler = require("../utils/asyncHandler");
 const ApiError = require("../utils/ApiError");
 const ApiResponse = require("../utils/ApiResponse");
+const uploadOnCloudinary = require("../utils/cloudinary");
 const mongoose = require("mongoose");
 
 const registerNotice = asyncHandler(async (req, res) => {
@@ -18,7 +19,18 @@ const registerNotice = asyncHandler(async (req, res) => {
     throw new ApiError(409, "notice with such title exists.");
   }
 
+  const imageLocalPath = req.files?.image[0]?.path;
+  if (!imageLocalPath) {
+    throw new ApiError(400, "news image is required.");
+  }
+  const image = await uploadOnCloudinary(imageLocalPath);
+
+  if (!image) {
+    throw new ApiError(400, "news image is required.");
+  }
+
   const createdNotice = await Notice.create({
+    image: image.url,
     title,
     noticebody,
   });
@@ -93,6 +105,8 @@ const deleteNotice = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, deletedNotice, "notice deleted successfully."));
 });
+
+
 
 module.exports = {
   registerNotice,

@@ -17,11 +17,13 @@ require("./config/db").connect();
 const userRouter = require("./routes/userRoute");
 const noticeRouter = require("./routes/notice.routes");
 const newsRouter = require("./routes/news.routes");
+const complaintRouter = require("./routes/complaint.routes");
 
 //route declaration
 app.use("/api/v1", userRouter);
 app.use("/api/v1/notice", noticeRouter);
 app.use("/api/v1/news", newsRouter);
+app.use("/api/v1/complaint", complaintRouter);
 
 const port = process.env.port;
 app.listen(port, () => {
