@@ -13,20 +13,25 @@ class CustomTextField1 extends StatelessWidget {
   final bool readOnly;
   final bool? showCursor;
   final void Function()? onTap;
+  final void Function(String?)? onSaved;
+  final String? Function(String?)? validator;
 
-  const CustomTextField1(
-      {super.key,
-      this.hintText,
-      this.prefixIcon,
-      this.suffixIcon,
-      this.title,
-      this.contentPadding = const EdgeInsets.fromLTRB(10, 13.5, 10, 13.5),
-      this.obscureText = false,
-      this.controller,
-      this.fillColor,
-      this.readOnly = false,
-      this.showCursor,
-      this.onTap});
+  const CustomTextField1({
+    super.key,
+    this.hintText,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.title,
+    this.contentPadding = const EdgeInsets.fromLTRB(10, 13.5, 10, 13.5),
+    this.obscureText = false,
+    this.controller,
+    this.fillColor,
+    this.readOnly = false,
+    this.showCursor,
+    this.onTap,
+    this.onSaved,
+    this.validator,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +48,8 @@ class CustomTextField1 extends StatelessWidget {
           readOnly: readOnly,
           controller: controller,
           obscureText: obscureText,
+          onSaved: onSaved,
+          validator: validator,
           decoration: InputDecoration(
             hintStyle: TextStyle(fontWeight: FontWeight.w400, fontSize: 14),
             prefixIcon: prefixIcon,

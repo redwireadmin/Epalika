@@ -23,6 +23,18 @@ class Language extends Translations {
           'logout': 'Logout',
           'nepali': 'Nepali',
           'english': 'English',
+
+          //homepage
+          'citizen': 'CITIZEN',
+          'digital': 'DIGITAL',
+          'direct': 'DIRECT',
+          'emergency': 'EMERGENCY',
+          'zone': 'ZONE',
+          'news': 'NEWS',
+
+          'departments': 'Departments',
+          'services': 'Services',
+          'actlaws': 'Act laws',
         },
         'np_NP': {
           'login': 'लग - इन',
@@ -43,6 +55,18 @@ class Language extends Translations {
           'logout': 'बाहिर निस्कनु',
           'nepali': 'नेपाली',
           'english': 'अंग्रेजी',
+
+          //homepage
+          'citizen': 'नागरिक',
+          'digital': 'डिजिटल',
+          'direct': 'प्रत्यक्ष ',
+          'emergency': 'आपतकालीन',
+          'zone': 'क्षेत्र',
+          'news': 'समाचार',
+
+          'departments': 'विभाग',
+          'services': 'सेवा',
+          'actlaws': 'ऐन कानून',
         }
       };
 }

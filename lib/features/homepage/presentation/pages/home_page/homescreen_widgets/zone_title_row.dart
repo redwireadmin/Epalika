@@ -17,7 +17,7 @@ class ZoneTitleRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          '$zoneTitle ZONE',
+          '$zoneTitle ${'zone'.tr}',
           style: TextStyle(
               fontSize: Get.width * 0.036,
               fontWeight: FontWeight.w500,

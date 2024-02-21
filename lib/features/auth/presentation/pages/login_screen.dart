@@ -2,6 +2,7 @@ import 'package:e_palika/config/routes/routes.dart';
 import 'package:e_palika/config/themes/colors.dart';
 import 'package:e_palika/features/auth/presentation/controllers/login_controller.dart';
 import 'package:e_palika/features/auth/presentation/controllers/obscuretext_controller.dart';
+import 'package:e_palika/features/auth/presentation/controllers/validation_controller.dart';
 import 'package:e_palika/features/auth/presentation/pages/signup_screen.dart';
 import 'package:e_palika/core/utils/widgets/custom_button.dart';
 import 'package:e_palika/features/auth/presentation/widgets/custom_textfield.dart';
@@ -16,6 +17,8 @@ class LoginView extends StatelessWidget {
   final LoginController loginController = Get.put(LoginController());
   final ObscureTextController obscureTextController =
       Get.put(ObscureTextController());
+  final ValidationController validationController =
+      Get.put(ValidationController());
 
   @override
   Widget build(BuildContext context) {
@@ -27,60 +30,63 @@ class LoginView extends StatelessWidget {
             topContainer(), //background with logo
             SingleChildScrollView(
               scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: Get.height * 0.35,
-                  ),
-                  Container(
-                    width: Get.width,
-                    padding: EdgeInsets.fromLTRB(20, 30, 20, 20),
-                    decoration: const BoxDecoration(
-                      color: CustomColors.appWhite,
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(25),
-                        topLeft: Radius.circular(25),
+              child: Form(
+                key: validationController.loginFormKey,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: Get.height * 0.35,
+                    ),
+                    Container(
+                      width: Get.width,
+                      padding: EdgeInsets.fromLTRB(20, 30, 20, 20),
+                      decoration: const BoxDecoration(
+                        color: CustomColors.appWhite,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(25),
+                          topLeft: Radius.circular(25),
+                        ),
+                      ),
+                      child: Column(
+                        children: [
+                          //todo
+                          Text(
+                            'login'.tr,
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              color: CustomColors.primaryColor13,
+                            ),
+                          ),
+                          SizedBox(height: 14),
+                          emailTextField(),
+                          SizedBox(height: 14),
+                          passwordTextField(),
+                          loginBtn(),
+                          forgotPassword(),
+                          SizedBox(height: 30),
+                          dontHaveAccount(),
+                          SizedBox(height: 60),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: [
+                          //     Text('English'),
+                          //     Obx(() => Switch(
+                          //           value:
+                          //               languageController.currentLocale.value ==
+                          //                   'np_NP',
+                          //           onChanged: (value) {
+                          //             languageController.toggleLanguage();
+                          //           },
+                          //         )),
+                          //     Text('Nepali'),
+                          //   ],
+                          // ),
+                        ],
                       ),
                     ),
-                    child: Column(
-                      children: [
-                        //todo
-                        Text(
-                          'login'.tr,
-                          style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: CustomColors.primaryColor13,
-                          ),
-                        ),
-                        SizedBox(height: 14),
-                        emailTextField(),
-                        SizedBox(height: 14),
-                        passwordTextField(),
-                        loginBtn(),
-                        forgotPassword(),
-                        SizedBox(height: 30),
-                        dontHaveAccount(),
-                        SizedBox(height: 60),
-                        // Row(
-                        //   mainAxisAlignment: MainAxisAlignment.center,
-                        //   children: [
-                        //     Text('English'),
-                        //     Obx(() => Switch(
-                        //           value:
-                        //               languageController.currentLocale.value ==
-                        //                   'np_NP',
-                        //           onChanged: (value) {
-                        //             languageController.toggleLanguage();
-                        //           },
-                        //         )),
-                        //     Text('Nepali'),
-                        //   ],
-                        // ),
-                      ],
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],
@@ -117,6 +123,13 @@ class LoginView extends StatelessWidget {
     return CustomTextField1(
       title: 'email/phone'.tr,
       controller: loginController.emailController,
+      //
+      onSaved: (value) {
+        validationController.email = value!;
+      },
+      validator: (value) {
+        return validationController.validateEmail(value!);
+      },
     );
   }
 
@@ -139,6 +152,13 @@ class LoginView extends StatelessWidget {
           ),
           color: CustomColors.textFieldBorderColor,
         ),
+        //
+        onSaved: (value) {
+          validationController.password = value!;
+        },
+        validator: (value) {
+          return validationController.validatePassword(value!);
+        },
       ),
     );
   }
@@ -167,7 +187,9 @@ class LoginView extends StatelessWidget {
       child: CustomElevatedButton(
         child: Text('login'.tr),
         onPressed: () {
-          loginController.loginApi();
+          if (validationController.checkLogin()) {
+            loginController.loginApi();
+          }
         },
       ),
     );

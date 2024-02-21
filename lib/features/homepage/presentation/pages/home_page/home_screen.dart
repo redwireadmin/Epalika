@@ -91,17 +91,17 @@ class _HomePageViewState extends State<HomePageView> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           SizedBox(height: Get.height * 0.01),
-                          ZoneTitleRow(zoneTitle: 'CITIZEN'),
+                          ZoneTitleRow(zoneTitle: 'citizen'.tr),
                           SizedBox(height: Get.height * 0.005),
                           CitizenZoneButtons(),
-                          ZoneTitleRow(zoneTitle: 'DIGITAL'),
+                          ZoneTitleRow(zoneTitle: 'digital'.tr),
                           SizedBox(height: Get.height * 0.005),
                           DigitalZoneButtons(),
-                          ZoneTitleRow(zoneTitle: 'DIRECT'),
+                          ZoneTitleRow(zoneTitle: 'direct'.tr),
                           SizedBox(height: Get.height * 0.005),
                           DirectZoneButtons(),
                           SizedBox(height: Get.height * 0.02),
-                          ZoneTitleRow(zoneTitle: 'Emergency'),
+                          ZoneTitleRow(zoneTitle: 'emergency'.tr),
                           SizedBox(height: Get.height * 0.005),
                           EmergencyZoneButtons(),
                         ],
@@ -155,7 +155,7 @@ class _HomePageViewState extends State<HomePageView> {
         children: [
           CustomElevatedButton(
             child: Text(
-              "News",
+              "news".tr,
               style: TextStyle(fontSize: 10),
             ),
             width: 70,
@@ -192,7 +192,7 @@ class _HomePageViewState extends State<HomePageView> {
                       Icons.computer,
                       size: Get.height * 0.04,
                     ),
-                    Text('Departments', style: TextStyle(fontSize: 13)),
+                    Text('departments'.tr, style: TextStyle(fontSize: 13)),
                   ],
                 ),
                 Column(
@@ -201,7 +201,7 @@ class _HomePageViewState extends State<HomePageView> {
                       Icons.assistant,
                       size: Get.height * 0.04,
                     ),
-                    Text('Services', style: TextStyle(fontSize: 13)),
+                    Text('services'.tr, style: TextStyle(fontSize: 13)),
                   ],
                 ),
                 Column(
@@ -210,7 +210,7 @@ class _HomePageViewState extends State<HomePageView> {
                       Icons.rule_sharp,
                       size: Get.height * 0.04,
                     ),
-                    Text('Act laws', style: TextStyle(fontSize: 13)),
+                    Text('actlaws'.tr, style: TextStyle(fontSize: 13)),
                   ],
                 ),
                 Text('Citizen1', style: TextStyle(fontSize: 13)),

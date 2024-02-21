@@ -1,4 +1,3 @@
-import 'package:e_palika/config/themes/colors.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -18,8 +17,7 @@ class RecommendationService extends StatelessWidget {
               .map((e) => Padding(
                     padding:
                         const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                    child: Container(
-                      decoration: BoxDecoration(color: CustomColors.appWhite),
+                    child: Card(
                       child: ExpansionTile(
                         title: Text(e),
                         childrenPadding: EdgeInsets.all(10),

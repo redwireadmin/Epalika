@@ -13,8 +13,8 @@ class LoginController extends GetxController {
   //
   UserPreferenceController userPreference = UserPreferenceController();
   //
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  late TextEditingController emailController = TextEditingController();
+  late TextEditingController passwordController = TextEditingController();
 
   void loginApi() {
     final Map<String, dynamic> requestBody = {
