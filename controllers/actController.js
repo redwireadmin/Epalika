@@ -104,6 +104,17 @@ const deleteAct = asyncHandler(async (req, res) => {
   if (!deletedAct) {
     throw new ApiError(404, "id not found to delete.");
   }
+
+  const filename = path.basename(deletedAct.file);
+
+  const filePath = path.join("public", "temp", filename);
+
+  if (fs.existsSync(filePath)) {
+    fs.unlinkSync(filePath);
+    console.log(`File ${filename} deleted successfully.`);
+  } else {
+    console.log(`File ${filename} does not exist.`);
+  }
   return res
     .status(200)
     .json(new ApiResponse(200, deletedAct, "notice deleted successfully."));
