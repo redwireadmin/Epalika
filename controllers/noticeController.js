@@ -4,6 +4,8 @@ const ApiError = require("../utils/ApiError");
 const ApiResponse = require("../utils/ApiResponse");
 // const uploadOnCloudinary = require("../utils/cloudinary");
 const mongoose = require("mongoose");
+const fs = require("fs");
+const path = require("path");
 
 const registerNotice = asyncHandler(async (req, res) => {
   const { title, noticebody } = req.body;
@@ -101,6 +103,15 @@ const deleteNotice = asyncHandler(async (req, res) => {
   if (!deletedNotice) {
     throw new ApiError(404, "id not found to delete.");
   }
+  const filename = path.basename(deletedNotice.image);
+  const filePath = path.join("public", "temp", filename);
+
+  if (fs.existsSync(filePath)) {
+    fs.unlinkSync(filePath);
+    console.log(`File ${filename} deleted successfully.`);
+  } else {
+    console.log(`File ${filename} does not exist.`);
+  }
   return res
     .status(200)
     .json(new ApiResponse(200, deletedNotice, "notice deleted successfully."));
@@ -112,8 +123,6 @@ const downloadNotice = asyncHandler(async (req, res) => {
   var filePath = notice.image;
   res.download(filePath);
 });
-
-
 
 module.exports = {
   registerNotice,
