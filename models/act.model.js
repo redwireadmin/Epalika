@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
-const noticeSchema = new mongoose.Schema(
+const actSchema = new mongoose.Schema(
   {
-    image: {
+    file: {
       type: String,
       required: true,
     },
@@ -11,11 +11,11 @@ const noticeSchema = new mongoose.Schema(
       unique: true,
       minlength: [5, "The title must be at least 5 character"],
     },
-    noticebody: {
+    actbody: {
       type: String,
       minlength: [
         15,
-        "Please provide the useful notice and it must be atleast 15 characters.",
+        "Please provide the useful act or rules  and it must be atleast 15 characters.",
       ],
     },
   },
@@ -24,4 +24,4 @@ const noticeSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Notice", noticeSchema);
+module.exports = mongoose.model("Act", actSchema);

@@ -2,7 +2,7 @@ const Notice = require("../models/notice.model");
 const asyncHandler = require("../utils/asyncHandler");
 const ApiError = require("../utils/ApiError");
 const ApiResponse = require("../utils/ApiResponse");
-const uploadOnCloudinary = require("../utils/cloudinary");
+// const uploadOnCloudinary = require("../utils/cloudinary");
 const mongoose = require("mongoose");
 
 const registerNotice = asyncHandler(async (req, res) => {
@@ -23,14 +23,14 @@ const registerNotice = asyncHandler(async (req, res) => {
   if (!imageLocalPath) {
     throw new ApiError(400, "news image is required.");
   }
-  const image = await uploadOnCloudinary(imageLocalPath);
+  // const image = await uploadOnCloudinary(imageLocalPath);
 
-  if (!image) {
-    throw new ApiError(400, "news image is required.");
-  }
+  // if (!image) {
+  //   throw new ApiError(400, "news image is required.");
+  // }
 
   const createdNotice = await Notice.create({
-    image: image.url,
+    image: imageLocalPath,
     title,
     noticebody,
   });
@@ -106,6 +106,13 @@ const deleteNotice = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, deletedNotice, "notice deleted successfully."));
 });
 
+const downloadNotice = asyncHandler(async (req, res) => {
+  const noticeId = req.params.id;
+  const notice = await Notice.findById(noticeId);
+  var filePath = notice.image;
+  res.download(filePath);
+});
+
 
 
 module.exports = {
@@ -114,4 +121,5 @@ module.exports = {
   getAllNotice,
   getNotice,
   deleteNotice,
+  downloadNotice,
 };

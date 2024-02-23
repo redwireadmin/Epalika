@@ -6,7 +6,7 @@ const {
   getAllNotice,
   getNotice,
   deleteNotice,
-  // downloadNoticeImage,
+  downloadNotice,
 } = require("../controllers/noticeController");
 const upload = uploadModule.upload;
 const auth = require("../middleware/auth");
@@ -28,6 +28,6 @@ router.route("/update/:id").patch(auth, isAdmin, updateNotice);
 router.route("/allnotice").get(getAllNotice);
 router.route("/single-notice/:id").get(getNotice);
 router.route("/delete/:id").delete(auth, isAdmin, deleteNotice);
-// router.route("/download/:id").get(downloadNoticeImage);
+router.route("/download/:id").get(downloadNotice);
 
 module.exports = router;
