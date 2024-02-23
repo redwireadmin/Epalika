@@ -3,6 +3,8 @@ const asyncHandler = require("../utils/asyncHandler");
 const ApiError = require("../utils/ApiError");
 const ApiResponse = require("../utils/ApiResponse");
 const mongoose = require("mongoose");
+const fs = require("fs");
+const path = require("path");
 
 const registerAct = asyncHandler(async (req, res) => {
   const { title, actbody } = req.body;
@@ -104,9 +106,7 @@ const deleteAct = asyncHandler(async (req, res) => {
   if (!deletedAct) {
     throw new ApiError(404, "id not found to delete.");
   }
-
   const filename = path.basename(deletedAct.file);
-
   const filePath = path.join("public", "temp", filename);
 
   if (fs.existsSync(filePath)) {
