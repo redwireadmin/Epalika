@@ -1,4 +1,7 @@
+import 'package:e_palika/config/routes/routes.dart';
 import 'package:e_palika/config/themes/colors.dart';
+import 'package:e_palika/features/auth/presentation/controllers/check_login_controller.dart';
+import 'package:e_palika/features/auth/presentation/controllers/user_pref_controller.dart';
 import 'package:e_palika/features/homepage/presentation/controllers/language_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,6 +9,10 @@ import 'package:get/get.dart';
 // ignore: must_be_immutable
 class EndDrawerWidget extends StatelessWidget {
   final LanguageController languageController = Get.put(LanguageController());
+  UserPreferenceController userPreference = UserPreferenceController();
+  final CheckLoginController drawerController =
+      Get.find<CheckLoginController>();
+
   int count = 0;
   @override
   Widget build(BuildContext context) {
@@ -66,13 +73,25 @@ class EndDrawerWidget extends StatelessWidget {
               // Handle messages item tap
             },
           ),
-          ListTile(
-            leading: Icon(Icons.exit_to_app),
-            title: Text('logout'.tr),
-            onTap: () {
-              // Handle logout item tap
-            },
-          ),
+
+          Obx(() => drawerController.checkLogin.value
+              ? ListTile(
+                  leading: Icon(Icons.exit_to_app),
+                  title: Text('logout'.tr),
+                  onTap: () {
+                    drawerController.checkLogin.value = false;
+                    userPreference.removeUser().then((value) {
+                      Get.toNamed(Routes.login);
+                    });
+                  },
+                )
+              : ListTile(
+                  leading: Icon(Icons.person),
+                  title: Text('login'.tr),
+                  onTap: () {
+                    Get.toNamed(Routes.login);
+                  },
+                )),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 60),
             height: 50,

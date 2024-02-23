@@ -7,6 +7,7 @@ import 'package:e_palika/features/homepage/presentation/pages/home_page/home_scr
 import 'package:e_palika/features/auth/presentation/pages/login_screen.dart';
 import 'package:e_palika/features/auth/presentation/pages/signup_screen.dart';
 import 'package:e_palika/features/auth/presentation/pages/splash_screen.dart';
+import 'package:e_palika/features/homepage/presentation/pages/landing_page/landing_screen.dart';
 import 'package:e_palika/features/homepage/presentation/pages/service_page/service_screen.dart';
 import 'package:get/get.dart';
 
@@ -14,6 +15,8 @@ class Routes {
   //auth routes
   static String splash = '/';
   static String home = '/home';
+  static String land = '/land';
+
   static String login = '/login';
   static String signup = '/signup';
   static String forgotpassword = '/forgotpw';
@@ -34,6 +37,10 @@ final getPages = [
   GetPage(
     name: Routes.home,
     page: () => const HomePageView(),
+  ),
+  GetPage(
+    name: Routes.land,
+    page: () => const LandingPageView(),
   ),
   GetPage(
     name: Routes.login,

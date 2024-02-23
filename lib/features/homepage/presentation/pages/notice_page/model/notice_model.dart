@@ -45,6 +45,7 @@ class NoticeItemModel {
   DateTime createdAt;
   DateTime updatedAt;
   int v;
+  String? image;
 
   NoticeItemModel({
     required this.id,
@@ -53,6 +54,7 @@ class NoticeItemModel {
     required this.createdAt,
     required this.updatedAt,
     required this.v,
+    this.image,
   });
 
   factory NoticeItemModel.fromJson(Map<String, dynamic> json) =>
@@ -63,6 +65,7 @@ class NoticeItemModel {
         createdAt: DateTime.parse(json["createdAt"]),
         updatedAt: DateTime.parse(json["updatedAt"]),
         v: json["__v"],
+        image: json["image"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -72,5 +75,6 @@ class NoticeItemModel {
         "createdAt": createdAt.toIso8601String(),
         "updatedAt": updatedAt.toIso8601String(),
         "__v": v,
+        "image": image,
       };
 }

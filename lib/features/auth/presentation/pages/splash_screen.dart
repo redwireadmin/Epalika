@@ -1,7 +1,7 @@
 import 'package:e_palika/config/themes/colors.dart';
+import 'package:e_palika/features/auth/presentation/controllers/check_login_controller.dart';
 import 'package:e_palika/features/auth/presentation/controllers/user_pref_controller.dart';
 import 'package:e_palika/features/homepage/presentation/pages/landing_page/landing_screen.dart';
-import 'package:e_palika/features/auth/presentation/pages/login_screen.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,27 +14,27 @@ class SplashScreenView extends StatefulWidget {
 }
 
 class _SplashScreenViewState extends State<SplashScreenView> {
+  final CheckLoginController checkLoginController =
+      Get.put(CheckLoginController());
+
   UserPreferenceController userPreference = UserPreferenceController();
   @override
   void initState() {
     super.initState();
-    // isLogin();
+    isLogin();
     _navigateToHome();
-    print('wid');
-    print(Get.width);
-    print('height');
-
-    print(Get.height);
   }
 
   void isLogin() async {
     userPreference.getUser().then(
       (value) {
+        print(value.accessToken.toString());
         if (value.accessToken.toString() == 'null') {
-          _navigateToLogin();
+          checkLoginController.checkLogin.value = false;
         } else {
-          _navigateToHome();
+          checkLoginController.checkLogin.value = true;
         }
+        print('asd ${checkLoginController.checkLogin.value}');
       },
     );
   }
@@ -43,13 +43,6 @@ class _SplashScreenViewState extends State<SplashScreenView> {
     await Future.delayed(Duration(milliseconds: 1500), () {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => LandingPageView()));
-    });
-  }
-
-  _navigateToLogin() async {
-    await Future.delayed(const Duration(milliseconds: 1500), () {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => LoginView()));
     });
   }
 

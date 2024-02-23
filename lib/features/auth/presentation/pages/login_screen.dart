@@ -184,13 +184,19 @@ class LoginView extends StatelessWidget {
   Widget loginBtn() {
     return Padding(
       padding: const EdgeInsets.only(top: 20, bottom: 25),
-      child: CustomElevatedButton(
-        child: Text('login'.tr),
-        onPressed: () {
-          if (validationController.checkLogin()) {
-            loginController.loginApi();
-          }
-        },
+      child: Obx(
+        () => loginController.loading.value
+            ? Center(
+                child: CircularProgressIndicator(),
+              )
+            : CustomElevatedButton(
+                child: Text('login'.tr),
+                onPressed: () {
+                  if (validationController.checkLogin()) {
+                    loginController.loginApi();
+                  }
+                },
+              ),
       ),
     );
   }

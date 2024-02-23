@@ -15,7 +15,7 @@ class ProfilePageWithoutLogin extends StatelessWidget {
         content: DialogBoxContent(
           btnText: 'Login',
           middleText: "Please Login first",
-          centerIcon: Icon(Icons.check),
+          centerIcon: Icon(Icons.close),
           onPressed: () {
             Get.back();
             Get.toNamed(Routes.login);

@@ -5,9 +5,11 @@ import 'package:e_palika/features/homepage/presentation/pages/notice_page/model/
 import 'package:get/get.dart';
 
 class NoticeController extends GetxController {
+  RxBool loading = false.obs;
   final _api = NoticeRepository();
   List<NoticeItemModel> noticeList = [];
   void getAllNotice() {
+    loading.value = true;
     _api.noticeApi().then((value) {
       // print(json.decode(value));
       NoticeModel noticeModel = NoticeModel.fromJson(value);
@@ -15,12 +17,13 @@ class NoticeController extends GetxController {
 
       noticeList = noticeModel.data;
       print(noticeList);
+      loading.value = false;
     });
   }
 
   @override
   void onInit() {
     super.onInit();
-    // getAllNotice();
+    getAllNotice();
   }
 }

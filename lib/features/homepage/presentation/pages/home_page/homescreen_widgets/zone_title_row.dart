@@ -38,20 +38,16 @@ class ZoneTitleRow extends StatelessWidget {
               SizedBox(width: Get.width * 0.02),
               Row(
                 children: [
-                  CircleAvatar(
-                    radius: 10,
-                    child: Icon(
-                      Icons.arrow_back_ios,
-                      size: 12,
-                    ),
+                  Icon(
+                    Icons.arrow_back_ios,
+                    size: 12,
+                    color: CustomColors.appWhite,
                   ),
                   SizedBox(width: Get.width * 0.01),
-                  CircleAvatar(
-                    radius: 10,
-                    child: Icon(
-                      Icons.arrow_forward_ios,
-                      size: 12,
-                    ),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    size: 12,
+                    color: CustomColors.appWhite,
                   ),
                 ],
               ),

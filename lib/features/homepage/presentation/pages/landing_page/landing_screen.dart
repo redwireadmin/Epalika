@@ -1,9 +1,12 @@
 import 'package:e_palika/config/themes/colors.dart';
+import 'package:e_palika/features/auth/presentation/controllers/check_login_controller.dart';
+import 'package:e_palika/features/auth/presentation/controllers/user_pref_controller.dart';
 import 'package:e_palika/features/homepage/presentation/pages/home_page/home_screen.dart';
 import 'package:e_palika/features/homepage/presentation/pages/landing_page/icons.dart';
 import 'package:e_palika/features/homepage/presentation/pages/landing_page/landing_page_controller/landing_page_controller.dart';
 import 'package:e_palika/features/homepage/presentation/pages/notice_page/notice_page.dart';
 import 'package:e_palika/features/homepage/presentation/pages/notification_page/notification_page.dart';
+import 'package:e_palika/features/homepage/presentation/pages/profile_page/profile_page_with_login.dart';
 import 'package:e_palika/features/homepage/presentation/pages/profile_page/profile_page_without_login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,12 +21,17 @@ class LandingPageView extends StatefulWidget {
 class _LandingPageViewState extends State<LandingPageView> {
   final LandingPageController landingPageController =
       Get.put(LandingPageController());
+  final CheckLoginController checkLoginController =
+      Get.put(CheckLoginController());
+  UserPreferenceController userPreference = UserPreferenceController();
+
   List<Widget> pages = [
     HomePageView(),
     NoticePageView(),
     HomePageView(),
     NotificationPageView(),
     ProfilePageWithoutLogin(),
+    ProfilePageWithLogin(),
   ];
   void changePage(index) {
     setState(() {
@@ -87,7 +95,11 @@ class _LandingPageViewState extends State<LandingPageView> {
                 isSelected: 4 == landingPageController.currentIndex.value,
               ),
               onPressed: () {
-                changePage(4);
+                if (checkLoginController.checkLogin.value) {
+                  changePage(5);
+                } else {
+                  changePage(4);
+                }
               },
             ),
           ],
