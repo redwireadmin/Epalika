@@ -24,7 +24,16 @@ router.route("/register").post(
   registerNotice
 );
 
-router.route("/update/:id").patch(auth, isAdmin, updateNotice);
+// router.route("/update/:id").patch(auth, isAdmin, updateNotice);
+router.route("/update/:id").patch(
+  upload.fields([
+    {
+      name: "image",
+      maxCount: 1,
+    },
+  ]),
+  updateNotice
+);
 router.route("/allnotice").get(getAllNotice);
 router.route("/single-notice/:id").get(getNotice);
 router.route("/delete/:id").delete(auth, isAdmin, deleteNotice);

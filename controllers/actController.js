@@ -84,7 +84,6 @@ const updateAct = asyncHandler(async (req, res) => {
   if (!req.body || Object.keys(req.body).length === 0) {
     throw new ApiError(400, "At least one field is required for update.");
   }
-
   const updatedAct = await Act.findByIdAndUpdate(updateID, req.body, {
     new: true,
     runValidators: true,

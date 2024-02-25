@@ -59,18 +59,34 @@ const updateNotice = asyncHandler(async (req, res) => {
   if (!req.body || Object.keys(req.body).length === 0) {
     throw new ApiError(400, "at least one field is required for update.");
   }
-  const updatedNotice = await Notice.findOneAndUpdate(
-    { _id: updateID },
-    req.body,
-    {
-      new: true,
-      runValidators: true,
-    }
-  );
+  const updatedNotice = await Notice.findByIdAndUpdate(updateID, req.body, {
+    new: true,
+    runValidators: true,
+  });
 
   if (!updatedNotice) {
-    throw new ApiError(404, "No notice with such ID");
+    throw new ApiError(404, "No news with such ID");
   }
+
+  const filename = path.basename(updatedNotice.image);
+  const filePath = path.join("public", "temp", filename);
+
+  if (fs.existsSync(filePath)) {
+    fs.unlinkSync(filePath);
+    console.log(`File ${filename} deleted successfully.`);
+  } else {
+    console.log(`File ${filename} does not exist.`);
+  }
+
+  const newFileLocalPath = req.files?.image[0]?.path;
+
+  if (!newFileLocalPath) {
+    throw new ApiError(400, "New image is required.");
+  }
+
+  updatedNotice.image = newFileLocalPath;
+  await updatedNotice.save();
+
   return res
     .status(200)
     .json(new ApiResponse(200, updatedNotice, "Notice updated successfully."));

@@ -22,7 +22,15 @@ router.route("/register").post(
 );
 router.route("/allnews").get(getAllNews);
 router.route("/single-news/:id").get(getNews);
-router.route("/update/:id").patch(updateNews);
+router.route("/update/:id").patch(
+  upload.fields([
+    {
+      name: "image",
+      maxCount: 1,
+    },
+  ]),
+  updateNews
+);
 router.route("/delete/:id").delete(deleteNews);
 
 module.exports = router;
