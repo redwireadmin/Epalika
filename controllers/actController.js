@@ -82,16 +82,37 @@ const updateAct = asyncHandler(async (req, res) => {
   }
 
   if (!req.body || Object.keys(req.body).length === 0) {
-    throw new ApiError(400, "at least one field is required for update.");
+    throw new ApiError(400, "At least one field is required for update.");
   }
-  const updatedAct = await Act.findOneAndUpdate({ _id: updateID }, req.body, {
+
+  const updatedAct = await Act.findByIdAndUpdate(updateID, req.body, {
     new: true,
     runValidators: true,
   });
 
   if (!updatedAct) {
-    throw new ApiError(404, "No notice with such ID");
+    throw new ApiError(404, "No act with such ID");
   }
+
+  const filename = path.basename(updatedAct.file);
+  const filePath = path.join("public", "temp", filename);
+
+  if (fs.existsSync(filePath)) {
+    fs.unlinkSync(filePath);
+    console.log(`File ${filename} deleted successfully.`);
+  } else {
+    console.log(`File ${filename} does not exist.`);
+  }
+
+  const newFileLocalPath = req.files?.file[0]?.path;
+
+  if (!newFileLocalPath) {
+    throw new ApiError(400, "New image is required.");
+  }
+
+  updatedAct.file = newFileLocalPath;
+  await updatedAct.save();
+
   return res
     .status(200)
     .json(new ApiResponse(200, updatedAct, "Notice updated successfully."));
@@ -117,7 +138,7 @@ const deleteAct = asyncHandler(async (req, res) => {
   }
   return res
     .status(200)
-    .json(new ApiResponse(200, deletedAct, "notice deleted successfully."));
+    .json(new ApiResponse(200, deletedAct, "act deleted successfully."));
 });
 
 const downloadAct = asyncHandler(async (req, res) => {

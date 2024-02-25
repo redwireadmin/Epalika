@@ -23,7 +23,16 @@ router.route("/register").post(
 );
 router.route("/all-act").get(getAllAct);
 router.route("/single-act/:id").get(getAct);
-router.route("/update/:id").patch(updateAct);
+// router.route("/update/:id").patch(updateAct);
+router.route("/update/:id").patch(
+  upload.fields([
+    {
+      name: "file",
+      maxCount: 1,
+    },
+  ]),
+  updateAct
+);
 router.route("/delete/:id").delete(deleteAct);
 router.route("/download/:id").get(downloadAct);
 

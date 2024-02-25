@@ -2,8 +2,9 @@ const News = require("../models/news.model");
 const asyncHandler = require("../utils/asyncHandler");
 const ApiError = require("../utils/ApiError");
 const ApiResponse = require("../utils/ApiResponse");
-const uploadOnCloudinary = require("../utils/cloudinary");
 const mongoose = require("mongoose");
+const fs = require("fs");
+const path = require("path");
 
 const registerNews = asyncHandler(async (req, res) => {
   const { title, newsBody } = req.body;
@@ -23,14 +24,14 @@ const registerNews = asyncHandler(async (req, res) => {
   if (!imageLocalPath) {
     throw new ApiError(400, "news image is required.");
   }
-  const image = await uploadOnCloudinary(imageLocalPath);
+  // const image = await uploadOnCloudinary(imageLocalPath);
 
-  if (!image) {
-    throw new ApiError(400, "news image is required.");
-  }
+  // if (!image) {
+  //   throw new ApiError(400, "news image is required.");
+  // }
 
   const createdNews = await News.create({
-    image: image.url,
+    image: imageLocalPath,
     title,
     newsBody,
   });
@@ -72,14 +73,34 @@ const updateNews = asyncHandler(async (req, res) => {
   if (!req.body || Object.keys(req.body).length === 0) {
     throw new ApiError(400, "at least one field is required for update.");
   }
-  const updatedNews = await News.findOneAndUpdate({ _id: updateID }, req.body, {
+  const updatedNews = await News.findByIdAndUpdate(updateID, req.body, {
     new: true,
     runValidators: true,
   });
 
   if (!updatedNews) {
-    throw new ApiError(404, "No notice with such ID");
+    throw new ApiError(404, "No news with such ID");
   }
+
+  const filename = path.basename(updatedNews.image);
+  const filePath = path.join("public", "temp", filename);
+
+  if (fs.existsSync(filePath)) {
+    fs.unlinkSync(filePath);
+    console.log(`File ${filename} deleted successfully.`);
+  } else {
+    console.log(`File ${filename} does not exist.`);
+  }
+
+  const newFileLocalPath = req.files?.image[0]?.path;
+
+  if (!newFileLocalPath) {
+    throw new ApiError(400, "New image is required.");
+  }
+
+  updatedNews.image = newFileLocalPath;
+  await updatedNews.save();
+
   return res
     .status(200)
     .json(new ApiResponse(200, updatedNews, "Notice updated successfully."));
@@ -93,6 +114,15 @@ const deleteNews = asyncHandler(async (req, res) => {
   const deletedNews = await News.findOneAndDelete({ _id: deleteId });
   if (!deletedNews) {
     throw new ApiError(404, "id not found to delete.");
+  }
+  const filename = path.basename(deletedNews.image);
+  const filePath = path.join("public", "temp", filename);
+
+  if (fs.existsSync(filePath)) {
+    fs.unlinkSync(filePath);
+    console.log(`File ${filename} deleted successfully.`);
+  } else {
+    console.log(`File ${filename} does not exist.`);
   }
   return res
     .status(200)
