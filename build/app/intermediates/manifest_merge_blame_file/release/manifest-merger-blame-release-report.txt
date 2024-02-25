@@ -1,0 +1,117 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.e_palika"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="19"
+8-->D:\project_started\project\android\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="33" />
+9-->D:\project_started\project\android\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:2:5-66
+11-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:2:22-64
+12    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+12-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:3:5-80
+12-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:3:22-78
+13
+14    <permission
+14-->[androidx.core:core:1.10.1] C:\Users\rajpr\.gradle\caches\transforms-3\889ce5bd12f1117e5357d5fcdb5e1305\transformed\core-1.10.1\AndroidManifest.xml:22:5-24:47
+15        android:name="com.example.e_palika.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+15-->[androidx.core:core:1.10.1] C:\Users\rajpr\.gradle\caches\transforms-3\889ce5bd12f1117e5357d5fcdb5e1305\transformed\core-1.10.1\AndroidManifest.xml:23:9-81
+16        android:protectionLevel="signature" />
+16-->[androidx.core:core:1.10.1] C:\Users\rajpr\.gradle\caches\transforms-3\889ce5bd12f1117e5357d5fcdb5e1305\transformed\core-1.10.1\AndroidManifest.xml:24:9-44
+17
+18    <uses-permission android:name="com.example.e_palika.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+18-->[androidx.core:core:1.10.1] C:\Users\rajpr\.gradle\caches\transforms-3\889ce5bd12f1117e5357d5fcdb5e1305\transformed\core-1.10.1\AndroidManifest.xml:26:5-97
+18-->[androidx.core:core:1.10.1] C:\Users\rajpr\.gradle\caches\transforms-3\889ce5bd12f1117e5357d5fcdb5e1305\transformed\core-1.10.1\AndroidManifest.xml:26:22-94
+19
+20    <application
+21        android:name="android.app.Application"
+21-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:6:9-42
+22        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+22-->[androidx.core:core:1.10.1] C:\Users\rajpr\.gradle\caches\transforms-3\889ce5bd12f1117e5357d5fcdb5e1305\transformed\core-1.10.1\AndroidManifest.xml:28:18-86
+23        android:icon="@mipmap/launcher_icon"
+23-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:7:9-45
+24        android:label="Project"
+24-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:5:9-32
+25        android:requestLegacyExternalStorage="true" >
+25-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:8:9-52
+26        <activity
+26-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:9:9-29:20
+27            android:name="com.example.e_palika.MainActivity"
+27-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:10:13-41
+28            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+28-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:14:13-163
+29            android:exported="true"
+29-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:11:13-36
+30            android:hardwareAccelerated="true"
+30-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:15:13-47
+31            android:launchMode="singleTop"
+31-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:12:13-43
+32            android:theme="@style/LaunchTheme"
+32-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:13:13-47
+33            android:windowSoftInputMode="adjustResize" >
+33-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:16:13-55
+34
+35            <!--
+36                 Specifies an Android theme to apply to this Activity as soon as
+37                 the Android process has started. This theme is visible to the user
+38                 while the Flutter UI initializes. After that, this theme continues
+39                 to determine the Window background behind the Flutter UI.
+40            -->
+41            <meta-data
+41-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:21:13-24:17
+42                android:name="io.flutter.embedding.android.NormalTheme"
+42-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:22:15-70
+43                android:resource="@style/NormalTheme" />
+43-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:23:15-52
+44
+45            <intent-filter>
+45-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:25:13-28:29
+46                <action android:name="android.intent.action.MAIN" />
+46-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:26:17-68
+46-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:26:25-66
+47
+48                <category android:name="android.intent.category.LAUNCHER" />
+48-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:27:17-76
+48-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:27:27-74
+49            </intent-filter>
+50        </activity>
+51        <!--
+52             Don't delete the meta-data below.
+53             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+54        -->
+55        <meta-data
+55-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:32:9-34:33
+56            android:name="flutterEmbedding"
+56-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:33:13-44
+57            android:value="2" />
+57-->D:\project_started\project\android\app\src\main\AndroidManifest.xml:34:13-30
+58
+59        <activity
+59-->[:url_launcher_android] D:\project_started\project\build\url_launcher_android\intermediates\merged_manifest\release\AndroidManifest.xml:10:9-13:74
+60            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+60-->[:url_launcher_android] D:\project_started\project\build\url_launcher_android\intermediates\merged_manifest\release\AndroidManifest.xml:11:13-74
+61            android:exported="false"
+61-->[:url_launcher_android] D:\project_started\project\build\url_launcher_android\intermediates\merged_manifest\release\AndroidManifest.xml:12:13-37
+62            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+62-->[:url_launcher_android] D:\project_started\project\build\url_launcher_android\intermediates\merged_manifest\release\AndroidManifest.xml:13:13-71
+63
+64        <uses-library
+64-->[androidx.window:window:1.0.0-beta04] C:\Users\rajpr\.gradle\caches\transforms-3\076eb9235982ee06112d76594ea8585f\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+65            android:name="androidx.window.extensions"
+65-->[androidx.window:window:1.0.0-beta04] C:\Users\rajpr\.gradle\caches\transforms-3\076eb9235982ee06112d76594ea8585f\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+66            android:required="false" />
+66-->[androidx.window:window:1.0.0-beta04] C:\Users\rajpr\.gradle\caches\transforms-3\076eb9235982ee06112d76594ea8585f\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+67        <uses-library
+67-->[androidx.window:window:1.0.0-beta04] C:\Users\rajpr\.gradle\caches\transforms-3\076eb9235982ee06112d76594ea8585f\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+68            android:name="androidx.window.sidecar"
+68-->[androidx.window:window:1.0.0-beta04] C:\Users\rajpr\.gradle\caches\transforms-3\076eb9235982ee06112d76594ea8585f\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+69            android:required="false" />
+69-->[androidx.window:window:1.0.0-beta04] C:\Users\rajpr\.gradle\caches\transforms-3\076eb9235982ee06112d76594ea8585f\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+70    </application>
+71
+72</manifest>
