@@ -1,5 +1,4 @@
 import 'package:e_palika/config/themes/colors.dart';
-import 'package:e_palika/features/auth/presentation/controllers/check_login_controller.dart';
 import 'package:e_palika/features/auth/presentation/controllers/user_pref_controller.dart';
 import 'package:e_palika/features/homepage/presentation/pages/landing_page/landing_screen.dart';
 
@@ -14,29 +13,12 @@ class SplashScreenView extends StatefulWidget {
 }
 
 class _SplashScreenViewState extends State<SplashScreenView> {
-  final CheckLoginController checkLoginController =
-      Get.put(CheckLoginController());
-
   UserPreferenceController userPreference = UserPreferenceController();
   @override
   void initState() {
     super.initState();
-    isLogin();
-    _navigateToHome();
-  }
 
-  void isLogin() async {
-    userPreference.getUser().then(
-      (value) {
-        print(value.accessToken.toString());
-        if (value.accessToken.toString() == 'null') {
-          checkLoginController.checkLogin.value = false;
-        } else {
-          checkLoginController.checkLogin.value = true;
-        }
-        print('asd ${checkLoginController.checkLogin.value}');
-      },
-    );
+    _navigateToHome();
   }
 
   _navigateToHome() async {

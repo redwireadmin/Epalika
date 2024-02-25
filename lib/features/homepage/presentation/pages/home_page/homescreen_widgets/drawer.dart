@@ -1,5 +1,6 @@
 import 'package:e_palika/config/routes/routes.dart';
 import 'package:e_palika/config/themes/colors.dart';
+import 'package:e_palika/core/utils/widgets/dialogbox_content.dart';
 import 'package:e_palika/features/auth/presentation/controllers/check_login_controller.dart';
 import 'package:e_palika/features/auth/presentation/controllers/user_pref_controller.dart';
 import 'package:e_palika/features/homepage/presentation/controllers/language_controller.dart';
@@ -81,7 +82,19 @@ class EndDrawerWidget extends StatelessWidget {
                   onTap: () {
                     drawerController.checkLogin.value = false;
                     userPreference.removeUser().then((value) {
-                      Get.toNamed(Routes.login);
+                      Get.defaultDialog(
+                        title: '',
+                        content: DialogBoxContent(
+                          btnText: 'Okay',
+                          middleText: "Logged out Successfully",
+                          centerIcon: Icon(Icons.check),
+                          onPressed: () {
+                            Get.back();
+                          },
+                        ),
+                        barrierDismissible: true,
+                      );
+                      Get.toNamed(Routes.land);
                     });
                   },
                 )

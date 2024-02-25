@@ -1,5 +1,5 @@
 class AppUrls {
-  static const String baseUrl = 'http://192.168.1.51:8000';
+  static const String baseUrl = 'http://192.168.1.74:8000';
   static const String login = '$baseUrl/api/v1/login';
   static const String signup = '$baseUrl/api/v1/signup';
   static const String otpVerify = '$baseUrl/api/v1/verify';

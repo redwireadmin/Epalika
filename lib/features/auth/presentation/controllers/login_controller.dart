@@ -6,6 +6,7 @@ import 'package:e_palika/features/auth/data/repository/login_repository/login_re
 import 'package:e_palika/features/auth/presentation/controllers/check_login_controller.dart';
 import 'package:e_palika/features/auth/presentation/controllers/user_pref_controller.dart';
 import 'package:e_palika/core/utils/widgets/dialogbox_content.dart';
+import 'package:e_palika/features/homepage/presentation/pages/landing_page/landing_page_controller/landing_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,6 +15,8 @@ class LoginController extends GetxController {
 
   final CheckLoginController checkLoginController =
       Get.find<CheckLoginController>();
+  final LandingPageController landingPageController =
+      Get.find<LandingPageController>();
   final _api = LoginRepository();
   //
   UserPreferenceController userPreference = UserPreferenceController();
@@ -37,6 +40,7 @@ class LoginController extends GetxController {
       if (value['status'] == 'success') {
         checkLoginController.checkLogin.value = true;
         userPreference.saveUser(UserModel.fromJson(value)).then((value) {
+          landingPageController.currentIndex.value = 0;
           Get.offAllNamed(Routes.land);
         });
       } else if (value['message'] == 'Email not verified') {

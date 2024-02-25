@@ -1,13 +1,11 @@
-import 'dart:io';
-
+import 'package:e_palika/config/app_urls/app_urls.dart';
 import 'package:e_palika/config/themes/colors.dart';
-import 'package:e_palika/core/utils/widgets/custom_button.dart';
 import 'package:e_palika/features/homepage/presentation/pages/notice_page/controller/notice_controller.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:http/http.dart' as http;
-import 'package:path_provider/path_provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // ignore: must_be_immutable
 class NoticePageView extends StatelessWidget {
@@ -75,43 +73,68 @@ class NoticePageView extends StatelessWidget {
                                           e.image == null || e.image == ''
                                               ? SizedBox.shrink()
                                               : Image.network(
-                                                  'http://192.168.1.51:8000/${e.image}'),
+                                                  '${AppUrls.baseUrl}/${e.image}'),
                                           SizedBox(height: 20),
-                                          CustomElevatedButton(
-                                            width: 20,
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Icon(
-                                                  Icons.download,
-                                                  size: 17,
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.download,
+                                                size: 17,
+                                              ),
+                                              SizedBox(width: 10),
+                                              RichText(
+                                                text: TextSpan(
+                                                  text: 'Download'.tr,
+                                                  style: const TextStyle(
+                                                    color: CustomColors
+                                                        .primaryColor1,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  recognizer:
+                                                      TapGestureRecognizer()
+                                                        ..onTap = () async {
+                                                          final url =
+                                                              '${AppUrls.baseUrl}/api/v1/notice/download/${e.id}'; // Replace with your URL
+                                                          final Uri uri =
+                                                              Uri.parse(url);
+                                                          await launchUrl(
+                                                            uri,
+                                                            mode: LaunchMode
+                                                                .externalApplication,
+                                                          );
+                                                        },
                                                 ),
-                                                SizedBox(width: 10),
-                                                Text("Download"),
-                                              ],
-                                            ),
-                                            onPressed: () async {
-                                              var response = await http.get(
-                                                  Uri.parse(
-                                                      'http://192.168.1.51:8000/api/v1/notice/download/${e.id}'));
-
-                                              // Save the image data to a file
-                                              final Directory? downloadsDir =
-                                                  await getDownloadsDirectory();
-                                              print(downloadsDir);
-                                              String downloadsDirPath =
-                                                  downloadsDir
-                                                      .toString()
-                                                      .replaceAll('\'', '');
-                                              ;
-                                              print(
-                                                  '${downloadsDirPath}/image.jpg');
-                                              var file = File(
-                                                  '${downloadsDirPath}/image.jpg');
-                                              file.writeAsBytesSync(
-                                                  response.bodyBytes);
-                                            },
+                                              ),
+                                            ],
                                           ),
+                                          // CustomElevatedButton(
+                                          //   width: 20,
+                                          //   child: Row(
+                                          //     mainAxisSize: MainAxisSize.min,
+                                          //     children: [
+                                          //       Icon(
+                                          //         Icons.download,
+                                          //         size: 17,
+                                          //       ),
+                                          //       SizedBox(width: 10),
+                                          //       Text("Download"),
+                                          //     ],
+                                          //   ),
+                                          //   onPressed: () async {
+                                          //     final url =
+                                          //         'http://192.168.1.51:8000/api/v1/notice/download/${e.id}'; // Replace with your URL
+                                          //     final Uri uri = Uri.parse(url);
+                                          //     await launchUrl(
+                                          //       uri,
+                                          //       mode: LaunchMode
+                                          //           .externalApplication,
+                                          //     );
+
+                                          //     // Save the image data to a file
+                                          //     //
+                                          //     //http://192.168.1.51:8000/api/v1/notice/download/${e.id}
+                                          //   },
+                                          // ),
                                         ],
                                       ),
                                     ),
